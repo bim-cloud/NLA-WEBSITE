@@ -174,11 +174,15 @@ nav .cta:hover{background:#33383D;color:#fff}
 .proj .scope{font-size:13.5px;line-height:1.55;color:var(--ink-45)}
 
 /* ---------- Quote ---------- */
-.quote{background:#fff}
-.quote .inner{max-width:960px;margin:0 auto;padding:clamp(90px,12vw,160px) 24px;text-align:center}
-.quote .mark{font-family:var(--serif);font-size:68px;line-height:.5;color:rgba(17,20,23,.22);padding-top:18px}
-.quote blockquote{margin-top:24px;font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,38px);line-height:1.42;text-wrap:balance}
-.quote .who{margin-top:30px;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-mute)}
+/* ---------- Clients banner ---------- */
+.clients{background:#fff;border-top:1px solid var(--line-soft);overflow:hidden;padding:clamp(64px,9vw,120px) 0}
+.clients .eyebrow{text-align:center}
+.clients .belt{margin-top:clamp(30px,4vw,52px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.clients .belt .track{display:flex;align-items:center;width:max-content;animation:mq 34s linear infinite}
+.clients .belt span{flex:none;font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,58px);letter-spacing:.06em;color:var(--ink);opacity:.82;padding:0 clamp(28px,4vw,60px);white-space:nowrap;transition:opacity .3s}
+.clients .belt span:hover{opacity:1}
+.clients .belt .dot{flex:none;width:7px;height:7px;border-radius:999px;background:rgba(17,20,23,.25)}
+@media (prefers-reduced-motion: reduce){.clients .belt .track{animation:none}}
 
 /* ---------- CTA ---------- */
 .cta-band{background:var(--ink);color:#fff}
@@ -199,6 +203,62 @@ footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
 footer a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;transition:color .25s}
 footer a:hover{color:#fff}
 footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:rgba(255,255,255,.4)}
+
+/* ---------- Scroll progress + nav hide ---------- */
+.scrollprog{position:fixed;top:0;left:0;right:0;height:2px;z-index:300;pointer-events:none}
+.scrollprog i{display:block;height:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;will-change:transform}
+nav{transition:transform .5s var(--ease),background .3s}
+nav.nav-hidden{transform:translateY(-102%)}
+
+/* ---------- Hero layered scene (scroll) ---------- */
+.hero .haze{position:absolute;left:-10%;right:-10%;bottom:-14%;height:44%;pointer-events:none;z-index:3;
+  background:radial-gradient(60% 90% at 20% 100%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%),
+             radial-gradient(55% 85% at 78% 100%,rgba(255,255,255,.9),rgba(255,255,255,0) 70%),
+             radial-gradient(70% 70% at 50% 110%,rgba(255,255,255,.98),rgba(255,255,255,0) 75%);
+  filter:blur(6px);will-change:transform,opacity}
+.hero .content,.hero .scroll-cue{will-change:transform,opacity}
+
+/* ---------- Capability marquee ---------- */
+.marquee{background:var(--ink);border-top:1px solid rgba(255,255,255,.08);overflow:hidden;padding:18px 0}
+.marquee .track{display:flex;width:max-content;animation:mq 42s linear infinite}
+.marquee span{flex:none;font-size:11.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:0 26px;position:relative}
+.marquee span::after{content:'·';position:absolute;right:-4px;color:rgba(255,255,255,.25)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.marquee .track{animation:none}}
+
+/* ---------- Stats ---------- */
+.stats{background:#fff;border-top:1px solid var(--line-soft)}
+.stats .grid4{max-width:1300px;margin:0 auto;padding:clamp(56px,7vw,100px) 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(24px,4vw,48px)}
+.stat{border-left:1px solid var(--line);padding-left:clamp(18px,2vw,28px)}
+.stat .num{font-family:var(--serif);font-weight:500;font-size:clamp(44px,4.6vw,72px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat .num sub{font-size:.38em;vertical-align:baseline;margin-left:4px;letter-spacing:.04em}
+.stat .lbl{margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-mute)}
+
+/* ---------- Process ---------- */
+.process{background:var(--paper-alt);border-top:1px solid var(--line-soft)}
+.process .inner{max-width:1300px;margin:0 auto;padding:clamp(80px,11vw,150px) 24px;display:grid;grid-template-columns:minmax(280px,1fr) minmax(320px,1.4fr);gap:clamp(36px,6vw,110px)}
+@media(max-width:860px){.process .inner{grid-template-columns:1fr}}
+.process h2{margin-top:20px;font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,56px);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+.process .steps{position:relative;padding-left:clamp(28px,3vw,44px)}
+.process .rail{position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--line)}
+.process .rail i{position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:top;will-change:transform}
+.step{padding:clamp(22px,3vw,34px) 0;border-bottom:1px solid var(--line-soft);opacity:.3;transform:translateX(14px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.step:last-child{border-bottom:0}
+.step.on{opacity:1;transform:none}
+.step .n{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--ink-mute)}
+.step h3{margin-top:10px;font-family:var(--serif);font-weight:500;font-size:clamp(23px,2.3vw,32px)}
+.step p{margin-top:10px;font-size:15px;line-height:1.72;color:var(--ink-60);max-width:52ch;text-wrap:pretty}
+
+/* ---------- Media curtain reveal ---------- */
+.proj .media::after{content:'';position:absolute;inset:0;background:var(--paper);transform-origin:top;transition:transform 1.1s var(--ease) .05s;z-index:2}
+.proj .media img{transform:scale(1.14);transition:transform 1.6s var(--ease)}
+.proj.mrev .media::after{transform:scaleY(0)}
+.proj.mrev .media img{transform:scale(1)}
+
+/* ---------- Split heading reveal ---------- */
+h2.split .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+h2.split .w i{display:inline-block;font-style:normal;transform:translateY(115%);transition:transform 1s var(--ease)}
+h2.split.on .w i{transform:none}
 
 /* ---------- Team ---------- */
 .team{background:var(--paper);border-top:1px solid var(--line-soft)}
@@ -235,6 +295,9 @@ body.leaving{opacity:0}
 .modal[hidden]{display:none}
 .modal .overlay{position:absolute;inset:0;background:rgba(12,15,17,.66);backdrop-filter:blur(4px)}
 .modal .panel{position:relative;background:#fff;max-width:860px;width:100%;max-height:86vh;overflow:auto;padding:clamp(32px,5vw,60px);box-shadow:0 40px 90px rgba(0,0,0,.35)}
+.modal .mmedia{margin:22px 0 6px;background:#0C0F11;overflow:hidden}
+.modal .mmedia video{display:block;width:100%;max-height:46vh;object-fit:contain}
+.modal .mmedia img{display:block;width:100%;max-height:46vh;object-fit:cover}
 .modal .close{position:absolute;top:16px;right:16px;width:40px;height:40px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:18px;cursor:pointer;transition:background .25s}
 .modal .close:hover{background:var(--paper-alt)}
 .modal h3{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.14;margin-top:8px}
@@ -260,6 +323,8 @@ body.modal-open{overflow:hidden}
   <div class="tag">Designed by Nature · Sustained by Us</div>
   <div class="hint">Click to enter</div>
 </div>
+
+<div class="scrollprog" aria-hidden="true"><i id="scrollProg"></i></div>
 
 <!-- ======================= NAV ======================= -->
 <nav>
@@ -288,8 +353,9 @@ body.modal-open{overflow:hidden}
     <div class="cloud" data-depth=".5" style="top:38%;left:38%;width:clamp(160px,18vw,300px)"><div class="drift" style="animation:cloudA 80s ease-in-out infinite alternate"><svg viewBox="0 0 300 120" style="filter:blur(9px);opacity:.5"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
     <div class="cloud" data-depth="1.5" style="top:74%;left:44%;width:clamp(220px,26vw,430px)"><div class="drift" style="animation:cloudB 90s ease-in-out infinite alternate"><svg viewBox="0 0 300 120" style="filter:blur(10px);opacity:.55"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
   </div>
+  <div class="haze" id="heroHaze" aria-hidden="true"></div>
   <div class="fade"></div>
-  <div class="content">
+  <div class="content" id="heroContent">
     <img src="assets/logo.png" alt="Nature Landscape Architects">
     <div class="kicker">BIM and Landscape Design</div>
     <h1><span>Designed by Nature.</span><span>Sustained by Us.</span></h1>
@@ -320,6 +386,13 @@ body.modal-open{overflow:hidden}
   </div>
 </section>
 
+<!-- ======================= CAPABILITY MARQUEE ======================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="mqTrack">
+    <span>Revit</span><span>Dynamo</span><span>Navisworks</span><span>Civil 3D</span><span>COBie</span><span>LOD 400</span><span>Clash Detection</span><span>Shop Drawings</span><span>Quantity Take-offs</span><span>Planting Design</span><span>Irrigation</span><span>Hardscape Detailing</span>
+  </div>
+</div>
+
 <!-- ======================= STATEMENT ======================= -->
 <section class="statement" id="about">
   <div class="wrap grid">
@@ -332,6 +405,16 @@ body.modal-open{overflow:hidden}
       <p>From residential gardens to large-scale public masterplans, we reduce project risk, improve coordination, and streamline construction, at highly competitive prices.</p>
       <a class="link-under" href="contact.html">About the Studio →</a>
     </div>
+  </div>
+</section>
+
+<!-- ======================= STATS ======================= -->
+<section class="stats" data-screen-label="Studio">
+  <div class="grid4">
+    <div class="stat" data-reveal><div class="num"><span data-count="25">0</span><sub>km</sub></div><div class="lbl">Corridor documented</div></div>
+    <div class="stat" data-reveal data-reveal-delay="80"><div class="num"><span data-count="3">0</span></div><div class="lbl">Emaar plots in production</div></div>
+    <div class="stat" data-reveal data-reveal-delay="160"><div class="num"><span data-count="5">0</span></div><div class="lbl">Disciplines under one roof</div></div>
+    <div class="stat" data-reveal data-reveal-delay="240"><div class="num"><span data-count="2">0</span></div><div class="lbl">Countries served</div></div>
   </div>
 </section>
 
@@ -363,31 +446,59 @@ body.modal-open{overflow:hidden}
       <a class="link-under" href="contact.html">All Services →</a>
     </div>
     <div class="svc-list">
-      <a class="svc" href="contact.html" data-reveal>
+      <a class="svc" href="#" data-modal="modal-svc-bim" data-reveal>
         <div class="idx">01</div>
         <div><h3>BIM Modelling</h3><p>Landscape BIM models from LOD 100 to 400, softscape, hardscape, and site elements built to your BIM execution plan.</p></div>
         <div class="arr">→</div>
       </a>
-      <a class="svc" href="contact.html" data-reveal data-reveal-delay="60">
+      <a class="svc" href="#" data-modal="modal-svc-stages" data-reveal data-reveal-delay="60">
         <div class="idx">02</div>
         <div><h3>Stage Documentation</h3><p>Concept, design development, construction documentation, shop drawings, and as-built records, every stage covered.</p></div>
         <div class="arr">→</div>
       </a>
-      <a class="svc" href="contact.html" data-reveal data-reveal-delay="120">
+      <a class="svc" href="#" data-modal="modal-svc-landscape" data-reveal data-reveal-delay="120">
         <div class="idx">03</div>
         <div><h3>Landscape Specialisms</h3><p>Masterplans, public parks, podium landscapes, planting and hardscape packages, documented by people who know landscape.</p></div>
         <div class="arr">→</div>
       </a>
-      <a class="svc" href="contact.html" data-reveal data-reveal-delay="180">
+      <a class="svc" href="#" data-modal="modal-svc-coord" data-reveal data-reveal-delay="180">
         <div class="idx">04</div>
         <div><h3>Coordination &amp; Quantities</h3><p>Clash detection, multi-disciplinary BIM coordination, quantity take-offs, scheduling, and precise 2D CAD drawings.</p></div>
         <div class="arr">→</div>
       </a>
-      <a class="svc" href="contact.html" data-reveal data-reveal-delay="240">
+      <a class="svc" href="#" data-modal="modal-svc-staffing" data-reveal data-reveal-delay="240">
         <div class="idx">05</div>
         <div><h3>BIM Staffing</h3><p>Qualified Revit and landscape BIM specialists embedded in your team, on demand or long term, working to your standards, templates, and time zone.</p></div>
         <div class="arr">→</div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROCESS ======================= -->
+<section class="process" id="process" data-screen-label="Process">
+  <div class="inner">
+    <div>
+      <div class="eyebrow" data-reveal>How We Work</div>
+      <h2 data-reveal data-reveal-delay="80">From brief to build, without the noise.</h2>
+    </div>
+    <div class="steps" id="procSteps">
+      <div class="rail" aria-hidden="true"><i id="procFill"></i></div>
+      <div class="step">
+        <div class="n">01</div>
+        <h3>Understand</h3>
+        <p>We read the design intent first — drawings, references, standards, site — so the model serves the design, not the other way around.</p>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h3>Model &amp; Coordinate</h3>
+        <p>LOD-controlled Revit models, clash-checked against every discipline and kept live as the design moves. No drift between drawing and model.</p>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h3>Deliver</h3>
+        <p>Stage documentation, schedules, and as-built records issued on programme — packages a contractor can build from without a phone call.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -477,12 +588,13 @@ body.modal-open{overflow:hidden}
   </div>
 </section>
 
-<!-- ======================= QUOTE ======================= -->
-<section class="quote">
-  <div class="inner">
-    <div class="mark" data-reveal>“</div>
-    <blockquote data-reveal data-reveal-delay="80">Their documentation packages arrive coordinated, complete, and construction-ready. It has changed how confidently we go to tender.</blockquote>
-    <div class="who" data-reveal data-reveal-delay="160">Design Director · Landscape Studio, Dubai</div>
+<!-- ======================= CLIENTS BANNER ======================= -->
+<section class="clients" data-screen-label="Clients">
+  <div class="eyebrow" data-reveal>Clients &amp; Collaborators</div>
+  <div class="belt" aria-label="Clients: Emaar, Mirage, South Landscape, Parsons, Mila">
+    <div class="track" id="clientTrack">
+      <span>EMAAR</span><i class="dot"></i><span>MIRAGE</span><i class="dot"></i><span>SOUTH LANDSCAPE</span><i class="dot"></i><span>PARSONS</span><i class="dot"></i><span>MILA</span><i class="dot"></i>
+    </div>
   </div>
 </section>
 
@@ -527,6 +639,158 @@ body.modal-open{overflow:hidden}
           <li>Address noise attenuation and visual barriers where required</li>
           <li>Blend in with the surrounding natural landscape</li>
           <li>Provide opportunities for people to connect with nature</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= SERVICE MODALS ======================= -->
+<div class="modal" id="modal-svc-bim" hidden role="dialog" aria-modal="true">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Service 01</div>
+    <h3>BIM Modelling</h3>
+    <div class="mmedia"><video src="assets/svc-bim.mp4" poster="assets/svc-bim-poster.jpg" muted loop playsinline controls preload="none"></video></div>
+    <p>High-fidelity Revit models built for landscape, developed from concept mass to fabrication-level detail and coordinated live against every other discipline on the project.</p>
+    <div class="cols">
+      <div>
+        <h4>Model Development</h4>
+        <ul>
+          <li>LOD 100 to LOD 400 — concept, design, construction &amp; fabrication detail</li>
+          <li>Landscape-specific families: hardscape, softscape, water features, site furniture</li>
+          <li>Asset parameter authoring and management across the model</li>
+          <li>COBie parameters populated for structured handover</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Standards &amp; Coordination</h4>
+        <ul>
+          <li>Coordination with structure, architecture, MEP &amp; lighting disciplines</li>
+          <li>Modelled and delivered to your BEP</li>
+          <li>Deliverables programmed against the MIDP</li>
+          <li>Shared coordinates, worksets &amp; naming to project standards</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-svc-stages" hidden role="dialog" aria-modal="true">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Service 02</div>
+    <h3>Stage Documentation</h3>
+    <div class="mmedia"><video src="assets/svc-stages.mp4" poster="assets/svc-stages-poster.jpg" muted loop playsinline controls preload="none"></video></div>
+    <p>Complete drawing packages issued stage by stage — generated from the model, checked before every submission, and delivered on programme so the design team never chases a sheet.</p>
+    <div class="cols">
+      <div>
+        <h4>Packages</h4>
+        <ul>
+          <li>Concept &amp; schematic design packages</li>
+          <li>Detailed design — DD50 &amp; DD100 submissions</li>
+          <li>Construction documentation &amp; tender sets</li>
+          <li>As-built records at handover</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Production Discipline</h4>
+        <ul>
+          <li>Sheet setup, annotation, tagging &amp; keynoting to office standards</li>
+          <li>Schedules and legends driven from the model — drawings never drift</li>
+          <li>QA/QC window before every issue</li>
+          <li>Submission programmes tracked plot by plot</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-svc-landscape" hidden role="dialog" aria-modal="true">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Service 03</div>
+    <h3>Landscape Specialisms</h3>
+    <div class="mmedia"><img src="assets/project-park.jpg" alt="Community park masterplan" loading="lazy"></div>
+    <p>Masterplans, public parks, podium landscapes, planting and hardscape packages — documented by people who know landscape, not generalists borrowing a template.</p>
+    <div class="cols">
+      <div>
+        <h4>Typologies</h4>
+        <ul>
+          <li>Masterplans &amp; public parks</li>
+          <li>Podium &amp; roof landscapes</li>
+          <li>Streetscapes &amp; infrastructure corridors</li>
+          <li>Residential communities &amp; resorts</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Packages</h4>
+        <ul>
+          <li>Planting plans, schedules &amp; specifications</li>
+          <li>Hardscape setting-out &amp; detailing</li>
+          <li>Water feature documentation</li>
+          <li>Irrigation coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-svc-coord" hidden role="dialog" aria-modal="true">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Service 04</div>
+    <h3>Coordination &amp; Quantities</h3>
+    <div class="mmedia"><img src="assets/project-midisland.jpg" alt="Coordinated infrastructure corridor" loading="lazy"></div>
+    <p>The unglamorous work that keeps a project buildable: clashes found before site does, quantities that match the model, and 2D deliverables drawn with precision.</p>
+    <div class="cols">
+      <div>
+        <h4>Coordination</h4>
+        <ul>
+          <li>Clash detection &amp; resolution reporting</li>
+          <li>Multi-disciplinary BIM coordination across structure, arch, MEP &amp; lighting</li>
+          <li>Federated model reviews &amp; issue tracking</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quantities &amp; CAD</h4>
+        <ul>
+          <li>Quantity take-offs generated from the model</li>
+          <li>BOQ-ready schedules</li>
+          <li>Precise 2D CAD drawing production</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-svc-staffing" hidden role="dialog" aria-modal="true">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Service 05</div>
+    <h3>BIM Staffing</h3>
+    <div class="mmedia"><img src="assets/project-render.jpg" alt="Landscape BIM production" loading="lazy"></div>
+    <p>Qualified Revit and landscape BIM specialists embedded in your team — capacity that scales with your submission calendar, without the overhead of hiring.</p>
+    <div class="cols">
+      <div>
+        <h4>Engagement</h4>
+        <ul>
+          <li>On-demand, plot-by-plot, or long-term embedment</li>
+          <li>Working to your standards, templates &amp; time zone</li>
+          <li>Ramp up for DD &amp; CD submission peaks</li>
+        </ul>
+      </div>
+      <div>
+        <h4>People</h4>
+        <ul>
+          <li>Landscape-literate Revit modellers &amp; documenters</li>
+          <li>BIM coordinators &amp; automation specialists</li>
+          <li>Vetted, briefed, and productive from week one</li>
         </ul>
       </div>
     </div>
@@ -579,6 +843,29 @@ const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function endIntro(){ intro.classList.add('done'); document.body.style.overflow=''; }
 if (reduce) { endIntro(); }
 else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
+
+// ---------- Split-line heading reveal ----------
+(function(){
+  if (reduce) return;
+  const targets = document.querySelectorAll('.services .head h2, .projects .head h2, .team .head h2, .process h2, .cta-band h2, .statement h2');
+  targets.forEach(h=>{
+    h.removeAttribute('data-reveal'); h.removeAttribute('data-reveal-delay');
+    const words = h.textContent.trim().split(/\s+/);
+    h.textContent='';
+    h.classList.add('split');
+    words.forEach((w,i)=>{
+      const o=document.createElement('span'); o.className='w';
+      const inner=document.createElement('i'); inner.textContent=w;
+      inner.style.transitionDelay=(i*55)+'ms';
+      o.appendChild(inner); h.appendChild(o);
+      h.appendChild(document.createTextNode(' '));
+    });
+  });
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+  },{threshold:.3});
+  targets.forEach(h=>io.observe(h));
+})();
 
 // ---------- Reveal on scroll ----------
 (function(){
@@ -679,9 +966,10 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
     const m=document.getElementById(id);
     if(!m) return;
     m.hidden=false; document.body.classList.add('modal-open');
+    const v=m.querySelector('video'); if(v){ v.currentTime=0; v.play().catch(()=>{}); }
   }
   function closeAll(){
-    document.querySelectorAll('.modal').forEach(m=>m.hidden=true);
+    document.querySelectorAll('.modal').forEach(m=>{ m.hidden=true; const v=m.querySelector('video'); if(v) v.pause(); });
     document.body.classList.remove('modal-open');
   }
   document.querySelectorAll('[data-modal]').forEach(el=>{
@@ -691,52 +979,158 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
   window.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeAll(); });
 })();
 
-// ---------- Interactive sky (fine pointers only) ----------
+// ---------- Hero layered scene: mouse repulsion + scroll parallax ----------
 (function(){
   const hero=document.querySelector('.hero');
   const sky=document.getElementById('heroSky');
   const scape=document.getElementById('heroScape');
+  const haze=document.getElementById('heroHaze');
+  const content=document.getElementById('heroContent');
+  const cue=hero?hero.querySelector('.scroll-cue'):null;
   if(!hero||!sky) return;
-  const fine=window.matchMedia('(pointer:fine)').matches;
   const noMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!fine||noMotion) return; // touch devices keep the ambient CSS drift
-  const clouds=[...sky.querySelectorAll('.cloud')].map(el=>({el,depth:parseFloat(el.dataset.depth)||1,x:0,y:0,tx:0,ty:0}));
-  let mx=0,my=0,inside=false,scX=0,scY=0,raf=null;
-  hero.addEventListener('mousemove',(e)=>{
-    const r=hero.getBoundingClientRect();
-    mx=e.clientX-r.left; my=e.clientY-r.top; inside=true;
-    if(!raf) loop();
+  if(noMotion) return;
+  const fine=window.matchMedia('(pointer:fine)').matches;
+  const clouds=[...sky.querySelectorAll('.cloud')].map(el=>{
+    const r=el.getBoundingClientRect(), hr=hero.getBoundingClientRect();
+    const cx=(r.left-hr.left+r.width/2)/hr.width;      // 0..1 horizontal position
+    return {el,depth:parseFloat(el.dataset.depth)||1,dir:cx<.5?-1:1,x:0,y:0,tx:0,ty:0};
   });
-  hero.addEventListener('mouseleave',()=>{ inside=false; });
+  let mx=0,my=0,inside=false,scX=0,scY=0,raf=null,visible=true;
+
+  if(fine){
+    hero.addEventListener('mousemove',(e)=>{
+      const r=hero.getBoundingClientRect();
+      mx=e.clientX-r.left; my=e.clientY-r.top; inside=true;
+    });
+    hero.addEventListener('mouseleave',()=>{ inside=false; });
+  }
+  new IntersectionObserver((es)=>{
+    visible=es[0].isIntersecting;
+    if(visible&&!raf) loop(); 
+  },{threshold:0}).observe(hero);
+
   function loop(){
     raf=requestAnimationFrame(loop);
+    if(!visible){ cancelAnimationFrame(raf); raf=null; return; }
     const r=hero.getBoundingClientRect();
-    const nx=(mx/r.width-.5), ny=(my/r.height-.5); // -0.5..0.5
-    let settled=true;
+    const sp=Math.min(Math.max(-r.top/(r.height*.9),0),1);       // scroll progress 0..1
+    const spE=1-Math.pow(1-sp,2);                                 // ease-out
+    const nx=(mx/r.width-.5), ny=(my/r.height-.5);
+
     clouds.forEach(c=>{
-      if(inside){
+      let rx=0,ry=0;
+      if(fine&&inside){
         const cr=c.el.getBoundingClientRect();
         const cx=cr.left-r.left+cr.width/2, cy=cr.top-r.top+cr.height/2;
         let dx=cx-mx, dy=cy-my;
         const dist=Math.max(Math.hypot(dx,dy),1);
         const radius=Math.min(r.width,r.height)*.42;
-        const push=Math.max(0,(radius-dist)/radius); // 0..1 within radius
-        const f=push*push*90*c.depth; // eased repulsion
-        c.tx=(dx/dist)*f + nx*-26*c.depth; // repel + counter-parallax
-        c.ty=(dy/dist)*f*.65 + ny*-14*c.depth;
-      } else { c.tx=0; c.ty=0; }
-      c.x+=(c.tx-c.x)*.055; c.y+=(c.ty-c.y)*.055;
-      if(Math.abs(c.x)>.15||Math.abs(c.y)>.15) settled=false;
-      c.el.style.transform='translate3d('+c.x.toFixed(2)+'px,'+c.y.toFixed(2)+'px,0)';
+        const push=Math.max(0,(radius-dist)/radius);
+        const f=push*push*90*c.depth;
+        rx=(dx/dist)*f + nx*-26*c.depth;
+        ry=(dy/dist)*f*.65 + ny*-14*c.depth;
+      }
+      // scroll: clouds fly outward past the camera
+      const sx=c.dir*spE*220*c.depth;
+      const sy=-spE*120*c.depth;
+      const sc=1+spE*.28*c.depth;
+      c.tx=rx+sx; c.ty=ry+sy;
+      c.x+=(c.tx-c.x)*.06; c.y+=(c.ty-c.y)*.06;
+      c.el.style.transform='translate3d('+c.x.toFixed(2)+'px,'+c.y.toFixed(2)+'px,0) scale('+sc.toFixed(3)+')';
+      c.el.style.opacity=(1-spE*.85).toFixed(3);
     });
+
+    // landscape rises + sharpens as clouds part
     if(scape){
-      const gx=inside?nx*18:0, gy=inside?ny*10:0;
+      const gx=(fine&&inside)?nx*18:0, gy=(fine&&inside)?ny*10:0;
       scX+=(gx-scX)*.05; scY+=(gy-scY)*.05;
-      scape.style.transform='translate3d('+scX.toFixed(2)+'px,'+scY.toFixed(2)+'px,0) scale(1.06)';
-      if(Math.abs(scX)>.15||Math.abs(scY)>.15) settled=false;
+      scape.style.transform='translate3d('+scX.toFixed(2)+'px,'+(scY-spE*46).toFixed(2)+'px,0) scale('+(1.06-spE*.04).toFixed(3)+')';
+      scape.style.opacity=(0.42+spE*.5).toFixed(3);
     }
-    if(!inside&&settled){ cancelAnimationFrame(raf); raf=null; }
+    // haze thins, content lifts and fades, cue fades
+    if(haze){ haze.style.transform='translate3d(0,'+(spE*70).toFixed(1)+'px,0)'; haze.style.opacity=(1-spE*1.1).toFixed(3); }
+    if(content){ content.style.transform='translate3d(0,'+(-spE*70).toFixed(1)+'px,0)'; content.style.opacity=(1-spE*1.35).toFixed(3); }
+    if(cue){ cue.style.opacity=(1-sp*2.4).toFixed(3); }
   }
+  loop();
+})();
+
+// ---------- Count-up stats ----------
+(function(){
+  const nums=document.querySelectorAll('[data-count]');
+  if(!nums.length) return;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target, end=parseFloat(el.dataset.count);
+      io.unobserve(el);
+      if(reduce){ el.textContent=end; return; }
+      const t0=performance.now(), dur=1500;
+      (function tick(t){
+        const p=Math.min((t-t0)/dur,1), e2=1-Math.pow(1-p,3);
+        el.textContent=Math.round(end*e2);
+        if(p<1) requestAnimationFrame(tick);
+      })(t0);
+    });
+  },{threshold:.5});
+  nums.forEach(n=>io.observe(n));
+})();
+
+// ---------- Process rail + steps ----------
+(function(){
+  const steps=document.getElementById('procSteps');
+  const fill=document.getElementById('procFill');
+  if(!steps||!fill) return;
+  const items=[...steps.querySelectorAll('.step')];
+  let ticking=false;
+  function update(){
+    ticking=false;
+    const r=steps.getBoundingClientRect(), vh=innerHeight;
+    const p=Math.min(Math.max((vh*.78-r.top)/r.height,0),1);
+    fill.style.transform='scaleY('+p.toFixed(3)+')';
+    items.forEach(it=>{
+      const ir=it.getBoundingClientRect();
+      it.classList.toggle('on', ir.top < vh*.78);
+    });
+  }
+  addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(update); } },{passive:true});
+  update();
+})();
+
+// ---------- Media curtain reveal ----------
+(function(){
+  const projs=document.querySelectorAll('.proj');
+  if(!projs.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ projs.forEach(p=>p.classList.add('mrev')); return; }
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('mrev'); io.unobserve(e.target);} });
+  },{threshold:.25});
+  projs.forEach(p=>io.observe(p));
+})();
+
+// ---------- Nav hide/show + scroll progress ----------
+(function(){
+  const nav=document.querySelector('nav');
+  const bar=document.getElementById('scrollProg');
+  let lastY=scrollY, ticking=false;
+  function update(){
+    ticking=false;
+    const y=scrollY, dy=y-lastY; lastY=y;
+    if(nav){ if(y>140&&dy>4) nav.classList.add('nav-hidden'); else if(dy<-4||y<=140) nav.classList.remove('nav-hidden'); }
+    if(bar){ const max=document.documentElement.scrollHeight-innerHeight; bar.style.transform='scaleX('+(max>0?y/max:0).toFixed(4)+')'; }
+  }
+  addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(update); } },{passive:true});
+  update();
+})();
+
+// ---------- Marquee: duplicate track for seamless loop ----------
+(function(){
+  ['mqTrack','clientTrack'].forEach(id=>{
+    const t=document.getElementById(id);
+    if(t) t.innerHTML+=t.innerHTML;
+  });
 })();
 
 // ---------- Page transitions ----------
