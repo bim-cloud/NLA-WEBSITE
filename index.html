@@ -94,15 +94,13 @@ nav .cta:hover{background:#33383D;color:#fff}
 .cloud .drift{will-change:transform}
 .cloud svg{width:100%;height:auto;display:block}
 .hero .fade{position:absolute;left:0;right:0;bottom:0;height:22vh;background:linear-gradient(180deg,rgba(251,252,253,0),#fff);pointer-events:none}
-.hero .content{position:relative;max-width:1200px;margin:0 auto;padding:clamp(72px,11vh,130px) 24px clamp(64px,9vh,100px);display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero .content{position:relative;z-index:6;max-width:1200px;margin:0 auto;padding:clamp(72px,11vh,130px) 24px clamp(64px,9vh,100px);display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero .content img{width:clamp(220px,30vw,320px);height:auto;animation:rise 1s var(--ease) .1s both}
 .hero .kicker{margin-top:clamp(30px,5vh,48px);font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-mute);animation:rise 1s var(--ease) .28s both}
-.hero h1{margin:16px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.8vw,72px);line-height:1.16;letter-spacing:.005em;animation:rise 1s var(--ease) .4s both}
-.hero h1 span{display:block}
-@media(max-width:560px){.hero h1{font-size:clamp(30px,8vw,38px)}}
+.hero h1{margin:18px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(19px,4.3vw,56px);line-height:1.22;letter-spacing:.012em;white-space:nowrap;animation:rise 1s var(--ease) .4s both}
 .hero p{margin:28px 0 0;font-size:clamp(15.5px,1.3vw,18px);line-height:1.7;color:var(--ink-60);max-width:52ch;text-wrap:pretty;animation:rise 1s var(--ease) .54s both}
 .hero .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:42px;animation:rise 1s var(--ease) .66s both}
-.hero .scroll-cue{position:absolute;left:50%;bottom:clamp(24px,5vh,46px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;animation:rise 1s ease .9s both}
+.hero .scroll-cue{position:absolute;left:50%;bottom:clamp(24px,5vh,46px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;animation:rise 1s ease .9s both;pointer-events:none}
 .hero .scroll-cue .lbl{font-size:10px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:rgba(17,20,23,.45)}
 .hero .scroll-cue .track{position:relative;width:1px;height:40px;background:rgba(17,20,23,.2);overflow:hidden}
 .hero .scroll-cue .dot{position:absolute;top:0;left:0;width:1px;height:12px;background:var(--ink);animation:scrollDot 2.2s cubic-bezier(.4,0,.2,1) infinite}
@@ -295,7 +293,12 @@ body.leaving{opacity:0}
 .modal[hidden]{display:none}
 .modal .overlay{position:absolute;inset:0;background:rgba(12,15,17,.66);backdrop-filter:blur(4px)}
 .modal .panel{position:relative;background:#fff;max-width:860px;width:100%;max-height:86vh;overflow:auto;padding:clamp(32px,5vw,60px);box-shadow:0 40px 90px rgba(0,0,0,.35)}
-.modal .mmedia{margin:22px 0 6px;background:#0C0F11;overflow:hidden}
+.modal .overlay{animation:mfade .4s ease both}
+.modal .panel{animation:mpanel .55s var(--ease) both}
+@keyframes mfade{from{opacity:0}}
+@keyframes mpanel{from{opacity:0;transform:translateY(26px) scale(.985)}}
+.modal .mmedia{margin:22px 0 6px;background:#0C0F11;overflow:hidden;animation:mfade .8s ease .15s both;transition:box-shadow .4s var(--ease),filter .4s var(--ease)}
+.modal .mmedia:hover{box-shadow:0 18px 44px rgba(12,15,17,.28);filter:brightness(1.04)}
 .modal .mmedia video{display:block;width:100%;max-height:46vh;object-fit:contain}
 .modal .mmedia img{display:block;width:100%;max-height:46vh;object-fit:cover}
 .modal .close{position:absolute;top:16px;right:16px;width:40px;height:40px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:18px;cursor:pointer;transition:background .25s}
@@ -358,7 +361,7 @@ body.modal-open{overflow:hidden}
   <div class="content" id="heroContent">
     <img src="assets/logo.png" alt="Nature Landscape Architects">
     <div class="kicker">BIM and Landscape Design</div>
-    <h1><span>Designed by Nature.</span><span>Sustained by Us.</span></h1>
+    <h1>Designed by Nature. Sustained by Us.</h1>
     <p>BIM and landscape design for projects that endure, from the first concept line to the final as-built record. Accurate, coordinated, construction-ready.</p>
     <div class="actions">
       <a class="btn btn-dark" href="contact.html">Contact Us</a>
@@ -487,7 +490,7 @@ body.modal-open{overflow:hidden}
       <div class="step">
         <div class="n">01</div>
         <h3>Understand</h3>
-        <p>We read the design intent first — drawings, references, standards, site — so the model serves the design, not the other way around.</p>
+        <p>We read the design intent first, from drawings and references to standards and site, so the model serves the design, not the other way around.</p>
       </div>
       <div class="step">
         <div class="n">02</div>
@@ -497,7 +500,7 @@ body.modal-open{overflow:hidden}
       <div class="step">
         <div class="n">03</div>
         <h3>Deliver</h3>
-        <p>Stage documentation, schedules, and as-built records issued on programme — packages a contractor can build from without a phone call.</p>
+        <p>Stage documentation, schedules, and as-built records issued on programme: packages a contractor can build from without a phone call.</p>
       </div>
     </div>
   </div>
@@ -509,7 +512,7 @@ body.modal-open{overflow:hidden}
     <div class="head" data-reveal>
       <div>
         <div class="eyebrow" style="margin-bottom:20px">Selected Work</div>
-        <h2 class="h-serif">Documentation in the field.</h2>
+        <h2 class="h-serif">Modeled and Documented.</h2>
       </div>
       <a class="link-under" href="contact.html">All Projects →</a>
     </div>
@@ -566,7 +569,7 @@ body.modal-open{overflow:hidden}
         </div>
         <div class="bar"></div>
       </div>
-      <!-- TEMPLATE — duplicate this block for each additional team member.
+      <!-- TEMPLATE: duplicate this block for each additional team member.
            For a photo, replace the initial with: <img src="assets/team/name.jpg" alt="Name">
       <div class="member" data-reveal data-reveal-delay="200">
         <div class="avatar">X</div>
@@ -634,7 +637,7 @@ body.modal-open{overflow:hidden}
         <h4>Landscape Design Focus</h4>
         <ul>
           <li>Establish a legible cyclist &amp; pedestrian connection</li>
-          <li>Create interesting scenery for all road users — pedestrian, cyclist &amp; vehicular</li>
+          <li>Create interesting scenery for all road users: pedestrian, cyclist &amp; vehicular</li>
           <li>Contemplate how the landscape is viewed at different speeds</li>
           <li>Address noise attenuation and visual barriers where required</li>
           <li>Blend in with the surrounding natural landscape</li>
@@ -658,7 +661,7 @@ body.modal-open{overflow:hidden}
       <div>
         <h4>Model Development</h4>
         <ul>
-          <li>LOD 100 to LOD 400 — concept, design, construction &amp; fabrication detail</li>
+          <li>LOD 100 to LOD 400: concept, design, construction &amp; fabrication detail</li>
           <li>Landscape-specific families: hardscape, softscape, water features, site furniture</li>
           <li>Asset parameter authoring and management across the model</li>
           <li>COBie parameters populated for structured handover</li>
@@ -684,13 +687,13 @@ body.modal-open{overflow:hidden}
     <div class="meta">Service 02</div>
     <h3>Stage Documentation</h3>
     <div class="mmedia"><video src="assets/svc-stages.mp4" poster="assets/svc-stages-poster.jpg" muted loop playsinline controls preload="none"></video></div>
-    <p>Complete drawing packages issued stage by stage — generated from the model, checked before every submission, and delivered on programme so the design team never chases a sheet.</p>
+    <p>Complete drawing packages issued stage by stage, generated from the model, checked before every submission, and delivered on programme so the design team never chases a sheet.</p>
     <div class="cols">
       <div>
         <h4>Packages</h4>
         <ul>
           <li>Concept &amp; schematic design packages</li>
-          <li>Detailed design — DD50 &amp; DD100 submissions</li>
+          <li>Detailed design: DD50 &amp; DD100 submissions</li>
           <li>Construction documentation &amp; tender sets</li>
           <li>As-built records at handover</li>
         </ul>
@@ -699,7 +702,7 @@ body.modal-open{overflow:hidden}
         <h4>Production Discipline</h4>
         <ul>
           <li>Sheet setup, annotation, tagging &amp; keynoting to office standards</li>
-          <li>Schedules and legends driven from the model — drawings never drift</li>
+          <li>Schedules and legends driven from the model, so drawings never drift</li>
           <li>QA/QC window before every issue</li>
           <li>Submission programmes tracked plot by plot</li>
         </ul>
@@ -714,8 +717,8 @@ body.modal-open{overflow:hidden}
     <button class="close" data-modal-close aria-label="Close">✕</button>
     <div class="meta">Service 03</div>
     <h3>Landscape Specialisms</h3>
-    <div class="mmedia"><img src="assets/project-park.jpg" alt="Community park masterplan" loading="lazy"></div>
-    <p>Masterplans, public parks, podium landscapes, planting and hardscape packages — documented by people who know landscape, not generalists borrowing a template.</p>
+    <div class="mmedia"><video src="assets/svc-landscape.mp4" poster="assets/svc-landscape-poster.jpg" muted loop playsinline controls preload="none"></video></div>
+    <p>Masterplans, public parks, podium landscapes, planting and hardscape packages, documented by people who know landscape, not generalists borrowing a template.</p>
     <div class="cols">
       <div>
         <h4>Typologies</h4>
@@ -745,7 +748,7 @@ body.modal-open{overflow:hidden}
     <button class="close" data-modal-close aria-label="Close">✕</button>
     <div class="meta">Service 04</div>
     <h3>Coordination &amp; Quantities</h3>
-    <div class="mmedia"><img src="assets/project-midisland.jpg" alt="Coordinated infrastructure corridor" loading="lazy"></div>
+    <div class="mmedia"><video src="assets/svc-coord.mp4" poster="assets/svc-coord-poster.jpg" muted loop playsinline controls preload="none"></video></div>
     <p>The unglamorous work that keeps a project buildable: clashes found before site does, quantities that match the model, and 2D deliverables drawn with precision.</p>
     <div class="cols">
       <div>
@@ -774,8 +777,7 @@ body.modal-open{overflow:hidden}
     <button class="close" data-modal-close aria-label="Close">✕</button>
     <div class="meta">Service 05</div>
     <h3>BIM Staffing</h3>
-    <div class="mmedia"><img src="assets/project-render.jpg" alt="Landscape BIM production" loading="lazy"></div>
-    <p>Qualified Revit and landscape BIM specialists embedded in your team — capacity that scales with your submission calendar, without the overhead of hiring.</p>
+    <p>Qualified Revit and landscape BIM specialists embedded in your team, with capacity that scales with your submission calendar and none of the overhead of hiring.</p>
     <div class="cols">
       <div>
         <h4>Engagement</h4>
@@ -826,7 +828,7 @@ body.modal-open{overflow:hidden}
       <ul>
         <li><a href="mailto:adithya@naturelandscapearchitects.com">adithya@naturelandscapearchitects.com</a></li>
         <li><a href="contact.html">Contact form</a></li>
-        <li><a href="contact.html">Kerala · India — Head Office</a></li>
+        <li><a href="contact.html">Kerala · India · Head Office</a></li>
       </ul>
     </div>
   </div>
@@ -994,7 +996,7 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
   const clouds=[...sky.querySelectorAll('.cloud')].map(el=>{
     const r=el.getBoundingClientRect(), hr=hero.getBoundingClientRect();
     const cx=(r.left-hr.left+r.width/2)/hr.width;      // 0..1 horizontal position
-    return {el,depth:parseFloat(el.dataset.depth)||1,dir:cx<.5?-1:1,x:0,y:0,tx:0,ty:0};
+    return {el,depth:parseFloat(el.dataset.depth)||1,dir:cx<.5?-1:1,x:0,y:0,tx:0,ty:0,push:0};
   });
   let mx=0,my=0,inside=false,scX=0,scY=0,raf=null,visible=true;
 
@@ -1020,24 +1022,28 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
 
     clouds.forEach(c=>{
       let rx=0,ry=0;
+      if(!(fine&&inside)) c.push*= .9;
       if(fine&&inside){
         const cr=c.el.getBoundingClientRect();
         const cx=cr.left-r.left+cr.width/2, cy=cr.top-r.top+cr.height/2;
         let dx=cx-mx, dy=cy-my;
         const dist=Math.max(Math.hypot(dx,dy),1);
-        const radius=Math.min(r.width,r.height)*.42;
+        const radius=Math.min(r.width,r.height)*.52;
         const push=Math.max(0,(radius-dist)/radius);
-        const f=push*push*90*c.depth;
-        rx=(dx/dist)*f + nx*-26*c.depth;
-        ry=(dy/dist)*f*.65 + ny*-14*c.depth;
+        const f=Math.pow(push,1.7)*64*c.depth;
+        rx=(dx/dist)*f + nx*-36*c.depth;
+        ry=(dy/dist)*f*.6 + ny*-18*c.depth;
+        c.push=push;
       }
       // scroll: clouds fly outward past the camera
       const sx=c.dir*spE*220*c.depth;
       const sy=-spE*120*c.depth;
       const sc=1+spE*.28*c.depth;
       c.tx=rx+sx; c.ty=ry+sy;
-      c.x+=(c.tx-c.x)*.06; c.y+=(c.ty-c.y)*.06;
-      c.el.style.transform='translate3d('+c.x.toFixed(2)+'px,'+c.y.toFixed(2)+'px,0) scale('+sc.toFixed(3)+')';
+      c.x+=(c.tx-c.x)*.045; c.y+=(c.ty-c.y)*.045;
+      const rot=c.x*.012;
+      const psc=sc*(1+(c.push||0)*.05);
+      c.el.style.transform='translate3d('+c.x.toFixed(2)+'px,'+c.y.toFixed(2)+'px,0) rotate('+rot.toFixed(2)+'deg) scale('+psc.toFixed(3)+')';
       c.el.style.opacity=(1-spE*.85).toFixed(3);
     });
 
@@ -1050,7 +1056,12 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
     }
     // haze thins, content lifts and fades, cue fades
     if(haze){ haze.style.transform='translate3d(0,'+(spE*70).toFixed(1)+'px,0)'; haze.style.opacity=(1-spE*1.1).toFixed(3); }
-    if(content){ content.style.transform='translate3d(0,'+(-spE*70).toFixed(1)+'px,0)'; content.style.opacity=(1-spE*1.35).toFixed(3); }
+    if(content){
+      const co=Math.max(1-spE*1.05,0);
+      content.style.transform='translate3d(0,'+(-spE*56).toFixed(1)+'px,0)';
+      content.style.opacity=co.toFixed(3);
+      content.style.pointerEvents=co<.15?'none':'';
+    }
     if(cue){ cue.style.opacity=(1-sp*2.4).toFixed(3); }
   }
   loop();

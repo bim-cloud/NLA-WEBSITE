@@ -1,4 +1,4 @@
-# NLA Website — Deploy & Go Public
+# NLA Website - Deploy & Go Public
 
 ## Folder
 ```
@@ -14,15 +14,15 @@ nla-website/
 ```
 
 ## 1. Deploy to Vercel (2 minutes)
-Option A — dashboard: vercel.com → Add New → Project → drag the `nla-website` folder in (or `vercel.com/new` → "Deploy without Git" is gone, so use CLI or Git).
+Option A - dashboard: vercel.com → Add New → Project → drag the `nla-website` folder in (or `vercel.com/new` → "Deploy without Git" is gone, so use CLI or Git).
 
-Option B — CLI:
+Option B - CLI:
 ```bash
 cd nla-website
 npx vercel --prod
 ```
 
-Option C — Git (recommended, same as the Timesheet app):
+Option C - Git (recommended, same as the Timesheet app):
 ```bash
 cd nla-website
 git init && git add -A && git commit -m "NLA website v1"
@@ -39,15 +39,15 @@ Give the IT admin these DNS records in GoDaddy:
 | A     | @    | 76.76.21.21            |
 | CNAME | www  | cname.vercel-dns.com   |
 
-(Vercel shows the exact values on the Domains page — use those if different.)
+(Vercel shows the exact values on the Domains page - use those if different.)
 HTTPS certificate is issued automatically once DNS propagates (5 min – 48 h).
 
-## 3. Before going public — checklist
+## 3. Before going public - checklist
 - [ ] Replace `info@example.com` and phone number in the CTA + footer (search `example.com` in index.html)
 - [ ] Swap the 3 project cards' images when real renders are ready (`assets/project-render.jpg` is reused 3× with filters right now)
 - [ ] Update `<meta name="description">` / OG tags if the tagline changes
 - [ ] Add Google Search Console → verify domain → submit sitemap (single page: just submit the URL)
-- [ ] Optional: add analytics — Vercel Analytics (Settings → Analytics → Enable) or a GA4 snippet
+- [ ] Optional: add analytics - Vercel Analytics (Settings → Analytics → Enable) or a GA4 snippet
 
 ## Notes on the video
 - Muted autoplay + loop + `playsinline` → plays on iPhone/Android without user tap
