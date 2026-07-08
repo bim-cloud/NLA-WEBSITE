@@ -85,13 +85,21 @@ nav .cta:hover{background:#33383D;color:#fff}
 /* ---------- Hero (cover) ---------- */
 .hero{position:relative;overflow:hidden;min-height:92vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,#E9EFF3 0%,#F3F6F8 44%,#FBFCFD 100%)}
 .hero .halo{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:90vw;height:60vh;background:radial-gradient(ellipse at center,rgba(255,255,255,.95),rgba(255,255,255,0) 70%);animation:glow 12s ease-in-out infinite;pointer-events:none}
-.cloud{position:absolute;pointer-events:none}
-.cloud svg{width:100%;height:auto}
+.hero .scape{position:absolute;left:0;right:0;bottom:0;height:58vh;pointer-events:none;opacity:.42;
+  background:url('assets/project-render.jpg') center 68%/cover no-repeat;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 45%,#000 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 45%,#000 100%);
+  will-change:transform;transition:opacity 1.2s var(--ease)}
+.cloud{position:absolute;pointer-events:none;will-change:transform}
+.cloud .drift{will-change:transform}
+.cloud svg{width:100%;height:auto;display:block}
 .hero .fade{position:absolute;left:0;right:0;bottom:0;height:22vh;background:linear-gradient(180deg,rgba(251,252,253,0),#fff);pointer-events:none}
 .hero .content{position:relative;max-width:1200px;margin:0 auto;padding:clamp(72px,11vh,130px) 24px clamp(64px,9vh,100px);display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero .content img{width:clamp(220px,30vw,320px);height:auto;animation:rise 1s var(--ease) .1s both}
 .hero .kicker{margin-top:clamp(30px,5vh,48px);font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-mute);animation:rise 1s var(--ease) .28s both}
-.hero h1{margin:14px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,104px);line-height:1.04;letter-spacing:-.015em;max-width:16ch;text-wrap:balance;animation:rise 1s var(--ease) .4s both}
+.hero h1{margin:16px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.8vw,72px);line-height:1.16;letter-spacing:.005em;animation:rise 1s var(--ease) .4s both}
+.hero h1 span{display:block}
+@media(max-width:560px){.hero h1{font-size:clamp(30px,8vw,38px)}}
 .hero p{margin:28px 0 0;font-size:clamp(15.5px,1.3vw,18px);line-height:1.7;color:var(--ink-60);max-width:52ch;text-wrap:pretty;animation:rise 1s var(--ease) .54s both}
 .hero .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:42px;animation:rise 1s var(--ease) .66s both}
 .hero .scroll-cue{position:absolute;left:50%;bottom:clamp(24px,5vh,46px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;animation:rise 1s ease .9s both}
@@ -192,6 +200,32 @@ footer a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;transit
 footer a:hover{color:#fff}
 footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:rgba(255,255,255,.4)}
 
+/* ---------- Team ---------- */
+.team{background:var(--paper);border-top:1px solid var(--line-soft)}
+.team .inner{max-width:1300px;margin:0 auto;padding:clamp(80px,11vw,150px) 24px}
+.team .head{max-width:760px;margin-bottom:clamp(40px,6vw,72px)}
+.team .head h2{margin-top:20px;font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,56px);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:clamp(20px,3vw,36px)}
+.member{position:relative;border:1px solid var(--line-soft);background:#fff;padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:18px;text-decoration:none;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.member:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(17,20,23,.1);border-color:transparent}
+.member .avatar{width:76px;height:76px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#E9EFF3,#F6F8FA);border:1px solid var(--line-soft);font-family:var(--serif);font-weight:500;font-size:26px;color:var(--ink-60);transition:background .5s var(--ease),color .5s,transform .5s var(--ease)}
+.member:hover .avatar{background:var(--ink);color:#fff;transform:scale(1.05)}
+.member .avatar img{width:100%;height:100%;object-fit:cover;border-radius:999px}
+.member h3{font-family:var(--serif);font-weight:500;font-size:clamp(21px,1.9vw,26px);line-height:1.2}
+.member .role{margin-top:6px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute)}
+.member .bar{height:1px;background:var(--line-soft);position:relative;overflow:hidden;margin-top:auto}
+.member .bar::after{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.member:hover .bar::after{transform:scaleX(1)}
+.member.join{justify-content:center;align-items:flex-start;background:var(--paper-alt);border-style:dashed}
+.member.join p{font-size:13.5px;line-height:1.65;color:var(--ink-60)}
+.member.join .arr{font-size:20px;transition:transform .4s var(--ease)}
+.member.join:hover .arr{transform:translateX(6px)}
+
+/* ---------- Page transition ---------- */
+body{opacity:0;transition:opacity .55s ease}
+body.ready{opacity:1}
+body.leaving{opacity:0}
+
 /* ---------- Project status + modal ---------- */
 .status{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border-radius:999px;margin-top:8px}
 .status.done{background:rgba(23,89,52,.09);color:#1E6B40}
@@ -236,6 +270,7 @@ body.modal-open{overflow:hidden}
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
+      <a href="#team">Team</a>
     </div>
     <a class="cta" href="contact.html">Contact Us</a>
   </div>
@@ -244,22 +279,20 @@ body.modal-open{overflow:hidden}
 <!-- ======================= HERO / COVER ======================= -->
 <section class="hero" id="top">
   <div class="halo" aria-hidden="true"></div>
-  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
-    <div class="cloud" style="top:12%;left:-4%;width:clamp(220px,26vw,420px);animation:cloudA 58s ease-in-out infinite alternate">
-      <svg viewBox="0 0 300 120" style="filter:blur(5px);opacity:.95"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg>
-    </div>
-    <div class="cloud" style="top:26%;right:-6%;width:clamp(260px,32vw,520px);animation:cloudB 72s ease-in-out infinite alternate">
-      <svg viewBox="0 0 300 120" style="filter:blur(7px);opacity:.8"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg>
-    </div>
-    <div class="cloud" style="top:54%;left:12%;width:clamp(180px,22vw,340px);animation:cloudA 64s ease-in-out infinite alternate-reverse">
-      <svg viewBox="0 0 300 120" style="filter:blur(6px);opacity:.7"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg>
-    </div>
+  <div class="scape" id="heroScape" aria-hidden="true"></div>
+  <div aria-hidden="true" id="heroSky" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+    <div class="cloud" data-depth="1.0" style="top:10%;left:-4%;width:clamp(220px,26vw,420px)"><div class="drift" style="animation:cloudA 58s ease-in-out infinite alternate"><svg viewBox="0 0 300 120" style="filter:blur(5px);opacity:.95"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
+    <div class="cloud" data-depth="1.35" style="top:24%;right:-6%;width:clamp(260px,32vw,520px)"><div class="drift" style="animation:cloudB 72s ease-in-out infinite alternate"><svg viewBox="0 0 300 120" style="filter:blur(7px);opacity:.85"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
+    <div class="cloud" data-depth=".7" style="top:50%;left:10%;width:clamp(180px,22vw,340px)"><div class="drift" style="animation:cloudA 64s ease-in-out infinite alternate-reverse"><svg viewBox="0 0 300 120" style="filter:blur(6px);opacity:.7"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
+    <div class="cloud" data-depth="1.15" style="top:62%;right:14%;width:clamp(200px,24vw,380px)"><div class="drift" style="animation:cloudB 66s ease-in-out infinite alternate-reverse"><svg viewBox="0 0 300 120" style="filter:blur(8px);opacity:.6"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
+    <div class="cloud" data-depth=".5" style="top:38%;left:38%;width:clamp(160px,18vw,300px)"><div class="drift" style="animation:cloudA 80s ease-in-out infinite alternate"><svg viewBox="0 0 300 120" style="filter:blur(9px);opacity:.5"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
+    <div class="cloud" data-depth="1.5" style="top:74%;left:44%;width:clamp(220px,26vw,430px)"><div class="drift" style="animation:cloudB 90s ease-in-out infinite alternate"><svg viewBox="0 0 300 120" style="filter:blur(10px);opacity:.55"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg></div></div>
   </div>
   <div class="fade"></div>
   <div class="content">
     <img src="assets/logo.png" alt="Nature Landscape Architects">
     <div class="kicker">BIM and Landscape Design</div>
-    <h1>Designed by Nature. Sustained by Us.</h1>
+    <h1><span>Designed by Nature.</span><span>Sustained by Us.</span></h1>
     <p>BIM and landscape design for projects that endure, from the first concept line to the final as-built record. Accurate, coordinated, construction-ready.</p>
     <div class="actions">
       <a class="btn btn-dark" href="contact.html">Contact Us</a>
@@ -398,6 +431,52 @@ body.modal-open{overflow:hidden}
   </div>
 </section>
 
+<!-- ======================= TEAM ======================= -->
+<section class="team" id="team" data-screen-label="Team">
+  <div class="inner">
+    <div class="head">
+      <div class="eyebrow" data-reveal>The Team</div>
+      <h2 data-reveal data-reveal-delay="80">The people behind the drawings.</h2>
+    </div>
+    <div class="team-grid">
+      <div class="member" data-reveal>
+        <div class="avatar">P</div>
+        <div>
+          <h3>Prasannakumar</h3>
+          <div class="role">Managing Director</div>
+        </div>
+        <div class="bar"></div>
+      </div>
+      <div class="member" data-reveal data-reveal-delay="100">
+        <div class="avatar">S</div>
+        <div>
+          <h3>Sanil</h3>
+          <div class="role">Head of BIM &amp; Landscape Design</div>
+        </div>
+        <div class="bar"></div>
+      </div>
+      <!-- TEMPLATE — duplicate this block for each additional team member.
+           For a photo, replace the initial with: <img src="assets/team/name.jpg" alt="Name">
+      <div class="member" data-reveal data-reveal-delay="200">
+        <div class="avatar">X</div>
+        <div>
+          <h3>Full Name</h3>
+          <div class="role">Designation</div>
+        </div>
+        <div class="bar"></div>
+      </div>
+      -->
+      <a class="member join" href="contact.html" data-reveal data-reveal-delay="200">
+        <div>
+          <h3>Join the studio</h3>
+          <p>We're growing our BIM and landscape team. Introduce yourself.</p>
+        </div>
+        <div class="arr">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= QUOTE ======================= -->
 <section class="quote">
   <div class="inner">
@@ -466,7 +545,8 @@ body.modal-open{overflow:hidden}
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects">Projects</a>
+      <a href="#team">Team</a></li>
       </ul>
     </div>
     <div>
@@ -610,6 +690,79 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
   document.querySelectorAll('[data-modal-close]').forEach(el=>el.addEventListener('click',closeAll));
   window.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeAll(); });
 })();
+
+// ---------- Interactive sky (fine pointers only) ----------
+(function(){
+  const hero=document.querySelector('.hero');
+  const sky=document.getElementById('heroSky');
+  const scape=document.getElementById('heroScape');
+  if(!hero||!sky) return;
+  const fine=window.matchMedia('(pointer:fine)').matches;
+  const noMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!fine||noMotion) return; // touch devices keep the ambient CSS drift
+  const clouds=[...sky.querySelectorAll('.cloud')].map(el=>({el,depth:parseFloat(el.dataset.depth)||1,x:0,y:0,tx:0,ty:0}));
+  let mx=0,my=0,inside=false,scX=0,scY=0,raf=null;
+  hero.addEventListener('mousemove',(e)=>{
+    const r=hero.getBoundingClientRect();
+    mx=e.clientX-r.left; my=e.clientY-r.top; inside=true;
+    if(!raf) loop();
+  });
+  hero.addEventListener('mouseleave',()=>{ inside=false; });
+  function loop(){
+    raf=requestAnimationFrame(loop);
+    const r=hero.getBoundingClientRect();
+    const nx=(mx/r.width-.5), ny=(my/r.height-.5); // -0.5..0.5
+    let settled=true;
+    clouds.forEach(c=>{
+      if(inside){
+        const cr=c.el.getBoundingClientRect();
+        const cx=cr.left-r.left+cr.width/2, cy=cr.top-r.top+cr.height/2;
+        let dx=cx-mx, dy=cy-my;
+        const dist=Math.max(Math.hypot(dx,dy),1);
+        const radius=Math.min(r.width,r.height)*.42;
+        const push=Math.max(0,(radius-dist)/radius); // 0..1 within radius
+        const f=push*push*90*c.depth; // eased repulsion
+        c.tx=(dx/dist)*f + nx*-26*c.depth; // repel + counter-parallax
+        c.ty=(dy/dist)*f*.65 + ny*-14*c.depth;
+      } else { c.tx=0; c.ty=0; }
+      c.x+=(c.tx-c.x)*.055; c.y+=(c.ty-c.y)*.055;
+      if(Math.abs(c.x)>.15||Math.abs(c.y)>.15) settled=false;
+      c.el.style.transform='translate3d('+c.x.toFixed(2)+'px,'+c.y.toFixed(2)+'px,0)';
+    });
+    if(scape){
+      const gx=inside?nx*18:0, gy=inside?ny*10:0;
+      scX+=(gx-scX)*.05; scY+=(gy-scY)*.05;
+      scape.style.transform='translate3d('+scX.toFixed(2)+'px,'+scY.toFixed(2)+'px,0) scale(1.06)';
+      if(Math.abs(scX)>.15||Math.abs(scY)>.15) settled=false;
+    }
+    if(!inside&&settled){ cancelAnimationFrame(raf); raf=null; }
+  }
+})();
+
+// ---------- Page transitions ----------
+document.body.classList.add('ready');
+document.querySelectorAll('a[href$=".html"],a[href^="contact.html"]').forEach(a=>{
+  a.addEventListener('click',(e)=>{
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||a.target==='_blank'||e.metaKey||e.ctrlKey) return;
+    e.preventDefault();
+    document.body.classList.add('leaving');
+    setTimeout(()=>{ location.href=href; },380);
+  });
+});
+
+// ---------- Magnetic buttons (fine pointers) ----------
+if (window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.querySelectorAll('.btn, nav .cta').forEach(btn=>{
+    btn.style.transition='transform .35s cubic-bezier(.22,.61,.36,1), background .3s, color .3s';
+    btn.addEventListener('mousemove',(e)=>{
+      const r=btn.getBoundingClientRect();
+      const x=(e.clientX-r.left-r.width/2)*.18, y=(e.clientY-r.top-r.height/2)*.3;
+      btn.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px)';
+    });
+    btn.addEventListener('mouseleave',()=>{ btn.style.transform=''; });
+  });
+}
 
 document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
