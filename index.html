@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nature Landscape Architects · BIM and Landscape Design</title>
+<meta name="description" content="Designed by Nature. Sustained by Us. BIM and landscape design for projects that endure, from the first concept line to the final as-built record.">
+<meta property="og:title" content="Nature Landscape Architects">
+<meta property="og:description" content="BIM and landscape design for projects that endure. Accurate, coordinated, construction-ready.">
+<meta property="og:image" content="assets/showreel-poster.jpg">
+<link rel="icon" href="assets/logo.png" type="image/png">
+
+<style>
+/* ---------- Fonts (self-hosted) ---------- */
+@font-face { font-family:'Archivo'; font-style:normal; font-weight:100 900; font-display:swap;
+  src:url("assets/fonts/archivo-latin.woff2") format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family:'Archivo'; font-style:normal; font-weight:100 900; font-display:swap;
+  src:url("assets/fonts/archivo-latin-ext.woff2") format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family:'Cormorant Garamond'; font-style:normal; font-weight:300 600; font-display:swap;
+  src:url("assets/fonts/cormorant-latin.woff2") format('woff2'); }
+@font-face { font-family:'Cormorant Garamond'; font-style:italic; font-weight:400; font-display:swap;
+  src:url("assets/fonts/cormorant-italic-latin.woff2") format('woff2'); }
+
+/* ---------- Tokens ---------- */
+:root{
+  --ink:#111417; --ink-60:#4A5056; --ink-45:#5B6167; --ink-mute:#6C7278;
+  --line:rgba(17,20,23,.14); --line-soft:rgba(17,20,23,.08);
+  --paper:#FFFFFF; --paper-alt:#F7F8F9;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Archivo',-apple-system,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--ink)}
+img,video{display:block;max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-mute)}
+.h-serif{font-family:var(--serif);font-weight:400;line-height:1.12;color:var(--ink);text-wrap:balance}
+.link-under{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:4px;transition:color .3s,border-color .3s}
+.link-under:hover{color:var(--ink-mute);border-color:var(--ink-mute)}
+.btn{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border-radius:999px;transition:background .3s,transform .3s,box-shadow .3s,border-color .3s}
+.btn-dark{color:#fff;background:var(--ink);padding:17px 34px;box-shadow:0 12px 30px rgba(17,20,23,.18)}
+.btn-dark:hover{background:#33383D;color:#fff;transform:translateY(-2px);box-shadow:0 16px 38px rgba(17,20,23,.26)}
+.btn-ghost{color:var(--ink);border:1px solid rgba(17,20,23,.3);padding:16px 34px;background:rgba(255,255,255,.5);backdrop-filter:blur(6px)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(255,255,255,.85)}
+
+/* ---------- Keyframes ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes introLogo{0%{opacity:0;transform:scale(.9) translateY(16px)}55%{opacity:1}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes introLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes introFade{from{opacity:0}to{opacity:1}}
+@keyframes introExit{from{transform:translateY(0)}to{transform:translateY(-101%)}}
+@keyframes cloudA{from{transform:translate3d(-7vw,0,0)}to{transform:translate3d(7vw,0,0)}}
+@keyframes cloudB{from{transform:translate3d(6vw,0,0)}to{transform:translate3d(-6vw,0,0)}}
+@keyframes glow{0%,100%{opacity:.5}50%{opacity:.82}}
+@keyframes scrollDot{0%{transform:translateY(0);opacity:0}25%{opacity:1}100%{transform:translateY(26px);opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
+/* ---------- Intro ---------- */
+#intro{position:fixed;inset:0;z-index:1000;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;animation:introExit .9s cubic-bezier(.76,0,.24,1) 2.9s forwards}
+#intro.done{display:none}
+#intro .row{display:flex;align-items:center;width:min(1100px,92vw);gap:clamp(24px,4vw,56px)}
+#intro .line{flex:1;height:1px;background:rgba(17,20,23,.3);animation:introLine 1.3s var(--ease) .55s both}
+#intro .line.l{transform-origin:right center}
+#intro .line.r{transform-origin:left center}
+#intro img{width:clamp(240px,34vw,440px);height:auto;animation:introLogo 1.4s var(--ease) .1s both}
+#intro .tag{margin-top:34px;font-size:11px;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);animation:introFade 1s ease 1.4s both}
+#intro .hint{position:absolute;bottom:30px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(17,20,23,.35);animation:introFade 1s ease 2s both}
+
+/* ---------- Nav ---------- */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+nav .inner{max-width:1300px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+nav .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+nav .brand img{height:38px;width:auto}
+nav .links{display:flex;gap:clamp(18px,3vw,38px)}
+nav .links a{font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--ink-60);transition:color .25s}
+nav .links a:hover{color:var(--ink)}
+nav .cta{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:#fff;background:var(--ink);padding:12px 24px;border-radius:999px;transition:background .3s}
+nav .cta:hover{background:#33383D;color:#fff}
+@media(max-width:760px){nav .links{display:none}}
+
+/* ---------- Hero (cover) ---------- */
+.hero{position:relative;overflow:hidden;min-height:92vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,#E9EFF3 0%,#F3F6F8 44%,#FBFCFD 100%)}
+.hero .halo{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:90vw;height:60vh;background:radial-gradient(ellipse at center,rgba(255,255,255,.95),rgba(255,255,255,0) 70%);animation:glow 12s ease-in-out infinite;pointer-events:none}
+.cloud{position:absolute;pointer-events:none}
+.cloud svg{width:100%;height:auto}
+.hero .fade{position:absolute;left:0;right:0;bottom:0;height:22vh;background:linear-gradient(180deg,rgba(251,252,253,0),#fff);pointer-events:none}
+.hero .content{position:relative;max-width:1200px;margin:0 auto;padding:clamp(72px,11vh,130px) 24px clamp(64px,9vh,100px);display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero .content img{width:clamp(220px,30vw,320px);height:auto;animation:rise 1s var(--ease) .1s both}
+.hero .kicker{margin-top:clamp(30px,5vh,48px);font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-mute);animation:rise 1s var(--ease) .28s both}
+.hero h1{margin:14px 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,104px);line-height:1.04;letter-spacing:-.015em;max-width:16ch;text-wrap:balance;animation:rise 1s var(--ease) .4s both}
+.hero p{margin:28px 0 0;font-size:clamp(15.5px,1.3vw,18px);line-height:1.7;color:var(--ink-60);max-width:52ch;text-wrap:pretty;animation:rise 1s var(--ease) .54s both}
+.hero .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:42px;animation:rise 1s var(--ease) .66s both}
+.hero .scroll-cue{position:absolute;left:50%;bottom:clamp(24px,5vh,46px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;animation:rise 1s ease .9s both}
+.hero .scroll-cue .lbl{font-size:10px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:rgba(17,20,23,.45)}
+.hero .scroll-cue .track{position:relative;width:1px;height:40px;background:rgba(17,20,23,.2);overflow:hidden}
+.hero .scroll-cue .dot{position:absolute;top:0;left:0;width:1px;height:12px;background:var(--ink);animation:scrollDot 2.2s cubic-bezier(.4,0,.2,1) infinite}
+
+/* ---------- Showreel video (after cover) ---------- */
+.reel{position:relative;background:var(--ink);overflow:hidden}
+.reel .frame{position:relative;height:min(100vh,56.25vw);min-height:420px}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reel .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,20,23,.35) 0%,rgba(17,20,23,0) 30%,rgba(17,20,23,0) 60%,rgba(17,20,23,.5) 100%);pointer-events:none}
+.reel .caption{position:absolute;left:clamp(20px,4vw,56px);bottom:clamp(24px,5vh,52px);color:#fff;max-width:min(560px,80vw)}
+.reel .caption .tag{font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.reel .caption h2{margin-top:10px;font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,44px);line-height:1.16;color:#fff;text-wrap:balance}
+.reel .mute-btn{position:absolute;right:clamp(20px,4vw,56px);bottom:clamp(24px,5vh,52px);width:46px;height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.45);background:rgba(17,20,23,.35);backdrop-filter:blur(8px);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s}
+.reel .mute-btn:hover{background:rgba(17,20,23,.6);border-color:#fff}
+
+/* ---------- Statement ---------- */
+.statement{background:#fff;border-top:1px solid var(--line-soft)}
+.statement .grid{padding-top:clamp(80px,11vw,150px);padding-bottom:clamp(80px,11vw,150px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,90px);align-items:start}
+.statement h2{font-size:clamp(32px,3.4vw,50px)}
+.statement .copy{display:flex;flex-direction:column;gap:22px;padding-top:8px}
+.statement .copy p{font-size:16px;line-height:1.78;color:var(--ink-60);text-wrap:pretty}
+.statement .copy a{align-self:flex-start}
+
+/* ---------- Logo reveal ---------- */
+.logoreveal{background:#fff;overflow:hidden}
+.logoreveal .inner{max-width:1300px;margin:0 auto;padding:clamp(100px,15vw,200px) 24px;display:flex;flex-direction:column;align-items:center}
+.logoreveal .v{width:1px;height:clamp(40px,6vh,70px);background:rgba(17,20,23,.4);transform:scaleY(0)}
+.logoreveal .v.top{transform-origin:bottom center}
+.logoreveal .v.bot{transform-origin:top center}
+.logoreveal .row{display:flex;align-items:center;width:100%;gap:clamp(18px,3vw,40px);margin:18px 0}
+.logoreveal .h{flex:1;height:1px;background:rgba(17,20,23,.35);transform:scaleX(0)}
+.logoreveal .h.l{transform-origin:right center}
+.logoreveal .h.r{transform-origin:left center}
+.logoreveal .word{display:grid}
+.logoreveal .word>div{grid-area:1/1;font-family:var(--sans);font-weight:700;font-size:clamp(48px,8.6vw,140px);line-height:1;letter-spacing:.22em;margin-right:-.22em;white-space:nowrap}
+.logoreveal .outline{color:rgba(17,20,23,.1);-webkit-text-stroke:1px rgba(17,20,23,.45)}
+.logoreveal .fill{color:var(--ink);opacity:0}
+.logoreveal .cap{font-size:clamp(12px,1.4vw,16px);letter-spacing:.58em;text-transform:lowercase;color:var(--ink-60);opacity:0;margin-bottom:18px}
+
+/* ---------- Services ---------- */
+.services .head,.projects .head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(30px,4vw,48px)}
+.services{background:#fff}
+.services .wrap{padding-top:clamp(70px,9vw,120px);padding-bottom:clamp(90px,11vw,150px)}
+.services h2,.projects h2{font-size:clamp(32px,3.4vw,50px)}
+.svc-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.svc{display:grid;grid-template-columns:minmax(56px,90px) 1fr auto;gap:clamp(16px,3vw,40px);align-items:center;padding:clamp(26px,3.4vw,40px) 4px;border-bottom:1px solid var(--line);text-decoration:none;transition:padding-left .35s,background .35s}
+.svc:hover{padding-left:18px;background:var(--paper-alt)}
+.svc .idx{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2vw,26px);color:rgba(17,20,23,.35)}
+.svc h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.4vw,32px);line-height:1.12}
+.svc p{margin-top:8px;font-size:14.5px;line-height:1.65;color:var(--ink-45);max-width:70ch;text-wrap:pretty}
+.svc .arr{font-size:20px}
+
+/* ---------- Projects ---------- */
+.projects{background:var(--paper-alt);border-top:1px solid var(--line-soft)}
+.projects .wrap{max-width:1300px;padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(80px,10vw,140px)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(22px,3vw,36px)}
+.proj{display:flex;flex-direction:column;gap:16px;text-decoration:none}
+.proj .media{position:relative;aspect-ratio:4/5;overflow:hidden;background:#E7E8EA;transition:transform .5s var(--ease)}
+.proj:hover .media{transform:translateY(-4px)}
+.proj .media .par{position:absolute;inset:-7% 0}
+.proj .media img{width:100%;height:100%;object-fit:cover}
+.proj .meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.proj h3{font-family:var(--serif);font-weight:500;font-size:26px}
+.proj .sector{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#85898D;flex:none}
+.proj .scope{font-size:13.5px;line-height:1.55;color:var(--ink-45)}
+
+/* ---------- Quote ---------- */
+.quote{background:#fff}
+.quote .inner{max-width:960px;margin:0 auto;padding:clamp(90px,12vw,160px) 24px;text-align:center}
+.quote .mark{font-family:var(--serif);font-size:68px;line-height:.5;color:rgba(17,20,23,.22);padding-top:18px}
+.quote blockquote{margin-top:24px;font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,38px);line-height:1.42;text-wrap:balance}
+.quote .who{margin-top:30px;font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-mute)}
+
+/* ---------- CTA ---------- */
+.cta-band{background:var(--ink);color:#fff}
+.cta-band .inner{max-width:960px;margin:0 auto;padding:clamp(90px,12vw,170px) 24px;text-align:center}
+.cta-band .eyebrow{color:rgba(255,255,255,.5);margin-bottom:26px}
+.cta-band h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,64px);line-height:1.14;color:#fff;max-width:20ch;margin:0 auto;text-wrap:balance}
+.cta-band p{margin:24px auto 0;font-size:16px;line-height:1.72;color:rgba(255,255,255,.65);max-width:48ch;text-wrap:pretty}
+.cta-band .btn-light{margin-top:42px;color:var(--ink);background:#fff;padding:18px 38px}
+.cta-band .btn-light:hover{background:#D9DBDD;transform:translateY(-2px)}
+
+/* ---------- Footer ---------- */
+footer{background:#0C0F11;color:rgba(255,255,255,.65)}
+footer .inner{max-width:1300px;margin:0 auto;padding:clamp(60px,8vw,100px) 24px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(30px,4vw,60px)}
+footer .brandcol img{height:44px;width:auto;filter:brightness(0) invert(1);opacity:.92}
+footer .brandcol p{margin-top:18px;font-size:13.5px;line-height:1.7;max-width:34ch}
+footer h4{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:18px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+footer a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;transition:color .25s}
+footer a:hover{color:#fff}
+footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:rgba(255,255,255,.4)}
+
+/* reveal-on-scroll initial state applied by JS */
+</style>
+</head>
+<body>
+
+<!-- ======================= CINEMATIC INTRO ======================= -->
+<div id="intro" onclick="endIntro()">
+  <div class="row">
+    <div class="line l"></div>
+    <img src="assets/logo.png" alt="Nature Landscape Architects">
+    <div class="line r"></div>
+  </div>
+  <div class="tag">Designed by Nature · Sustained by Us</div>
+  <div class="hint">Click to enter</div>
+</div>
+
+<!-- ======================= NAV ======================= -->
+<nav>
+  <div class="inner">
+    <a class="brand" href="#top"><img src="assets/logo.png" alt="Nature Landscape Architects"></a>
+    <div class="links">
+      <a href="#showreel">Showreel</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+    </div>
+    <a class="cta" href="#contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- ======================= HERO / COVER ======================= -->
+<section class="hero" id="top">
+  <div class="halo" aria-hidden="true"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+    <div class="cloud" style="top:12%;left:-4%;width:clamp(220px,26vw,420px);animation:cloudA 58s ease-in-out infinite alternate">
+      <svg viewBox="0 0 300 120" style="filter:blur(5px);opacity:.95"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg>
+    </div>
+    <div class="cloud" style="top:26%;right:-6%;width:clamp(260px,32vw,520px);animation:cloudB 72s ease-in-out infinite alternate">
+      <svg viewBox="0 0 300 120" style="filter:blur(7px);opacity:.8"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg>
+    </div>
+    <div class="cloud" style="top:54%;left:12%;width:clamp(180px,22vw,340px);animation:cloudA 64s ease-in-out infinite alternate-reverse">
+      <svg viewBox="0 0 300 120" style="filter:blur(6px);opacity:.7"><g fill="#FFFFFF"><circle cx="72" cy="82" r="38"/><circle cx="116" cy="58" r="52"/><circle cx="168" cy="70" r="46"/><circle cx="214" cy="84" r="36"/><rect x="62" y="80" width="162" height="40"/></g></svg>
+    </div>
+  </div>
+  <div class="fade"></div>
+  <div class="content">
+    <img src="assets/logo.png" alt="Nature Landscape Architects">
+    <div class="kicker">BIM and Landscape Design</div>
+    <h1>Designed by Nature. Sustained by Us.</h1>
+    <p>BIM and landscape design for projects that endure, from the first concept line to the final as-built record. Accurate, coordinated, construction-ready.</p>
+    <div class="actions">
+      <a class="btn btn-dark" href="#contact">Contact Us</a>
+      <a class="btn btn-ghost" href="#projects">View Our Work</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <div class="lbl">Scroll</div>
+    <div class="track"><div class="dot"></div></div>
+  </div>
+</section>
+
+<!-- ======================= SHOWREEL VIDEO (after cover) ======================= -->
+<section class="reel" id="showreel" data-screen-label="Showreel">
+  <div class="frame">
+    <video id="reelVideo" autoplay muted loop playsinline preload="metadata" poster="assets/showreel-poster.jpg">
+      <source src="assets/showreel.mp4" type="video/mp4">
+    </video>
+    <div class="scrim"></div>
+    <div class="caption" data-reveal>
+      <div class="tag">Studio Showreel</div>
+      <h2>Landscapes, modelled to be built.</h2>
+    </div>
+    <button class="mute-btn" id="muteBtn" aria-label="Unmute video" title="Sound on/off">&#128263;</button>
+  </div>
+</section>
+
+<!-- ======================= STATEMENT ======================= -->
+<section class="statement" id="about">
+  <div class="wrap grid">
+    <div data-reveal>
+      <div class="eyebrow" style="margin-bottom:24px">Who We Are</div>
+      <h2 class="h-serif">The technical backbone behind exceptional landscapes.</h2>
+    </div>
+    <div class="copy" data-reveal data-reveal-delay="120">
+      <p>We are a specialist documentation studio serving landscape architects, developers, and multi-disciplinary teams. Our BIM professionals translate design intent into technically accurate, construction-ready documentation, with the quality standards and turnaround times demanding projects require.</p>
+      <p>From residential gardens to large-scale public masterplans, we reduce project risk, improve coordination, and streamline construction, at highly competitive prices.</p>
+      <a class="link-under" href="#contact">About the Studio →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LOGO REVEAL ======================= -->
+<section class="logoreveal" id="nla-logoreveal">
+  <div class="inner">
+    <div class="v top" data-logo-line="v"></div>
+    <div class="row">
+      <div class="h l" data-logo-line="h"></div>
+      <div class="word">
+        <div class="outline">NATURE</div>
+        <div class="fill" data-logo-fill>NATURE</div>
+      </div>
+      <div class="h r" data-logo-line="h"></div>
+    </div>
+    <div class="cap" data-logo-caption>landscape architecture</div>
+    <div class="v bot" data-logo-line="v"></div>
+  </div>
+</section>
+
+<!-- ======================= SERVICES ======================= -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <div>
+        <div class="eyebrow" style="margin-bottom:20px">What We Do</div>
+        <h2 class="h-serif">Four disciplines, one standard.</h2>
+      </div>
+      <a class="link-under" href="#contact">All Services →</a>
+    </div>
+    <div class="svc-list">
+      <a class="svc" href="#contact" data-reveal>
+        <div class="idx">01</div>
+        <div><h3>BIM Modelling</h3><p>Landscape BIM models from LOD 100 to 400, softscape, hardscape, and site elements built to your BIM execution plan.</p></div>
+        <div class="arr">→</div>
+      </a>
+      <a class="svc" href="#contact" data-reveal data-reveal-delay="60">
+        <div class="idx">02</div>
+        <div><h3>Stage Documentation</h3><p>Concept, design development, construction documentation, shop drawings, and as-built records, every stage covered.</p></div>
+        <div class="arr">→</div>
+      </a>
+      <a class="svc" href="#contact" data-reveal data-reveal-delay="120">
+        <div class="idx">03</div>
+        <div><h3>Landscape Specialisms</h3><p>Masterplans, public parks, podium landscapes, planting and hardscape packages, documented by people who know landscape.</p></div>
+        <div class="arr">→</div>
+      </a>
+      <a class="svc" href="#contact" data-reveal data-reveal-delay="180">
+        <div class="idx">04</div>
+        <div><h3>Coordination &amp; Quantities</h3><p>Clash detection, multi-disciplinary BIM coordination, quantity take-offs, scheduling, and precise 2D CAD drawings.</p></div>
+        <div class="arr">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROJECTS ======================= -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <div>
+        <div class="eyebrow" style="margin-bottom:20px">Selected Work</div>
+        <h2 class="h-serif">Documentation in the field.</h2>
+      </div>
+      <a class="link-under" href="#contact">All Projects →</a>
+    </div>
+    <div class="proj-grid">
+      <a class="proj" href="#contact" data-reveal>
+        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-render.jpg" alt="Coastal Promenade render" loading="lazy"></div></div>
+        <div>
+          <div class="meta"><h3>Coastal Promenade</h3><span class="sector">Public Realm</span></div>
+          <div class="scope">2.4 km waterfront masterplan · LOD 300 · Construction documentation</div>
+        </div>
+      </a>
+      <a class="proj" href="#contact" data-reveal data-reveal-delay="100">
+        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-render.jpg" alt="The Verdant Podium render" loading="lazy" style="filter:saturate(.85) brightness(1.04)"></div></div>
+        <div>
+          <div class="meta"><h3>The Verdant Podium</h3><span class="sector">Residential</span></div>
+          <div class="scope">Podium landscape · LOD 350 · Clash coordination with structure &amp; MEP</div>
+        </div>
+      </a>
+      <a class="proj" href="#contact" data-reveal data-reveal-delay="200">
+        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-render.jpg" alt="Heritage Botanic Park render" loading="lazy" style="filter:sepia(.12) saturate(1.05)"></div></div>
+        <div>
+          <div class="meta"><h3>Heritage Botanic Park</h3><span class="sector">Public Park</span></div>
+          <div class="scope">40 ha park · Planting &amp; hardscape documentation · Quantity take-offs</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= QUOTE ======================= -->
+<section class="quote">
+  <div class="inner">
+    <div class="mark" data-reveal>“</div>
+    <blockquote data-reveal data-reveal-delay="80">Their documentation packages arrive coordinated, complete, and construction-ready. It has changed how confidently we go to tender.</blockquote>
+    <div class="who" data-reveal data-reveal-delay="160">Design Director · Landscape Studio, Dubai</div>
+  </div>
+</section>
+
+<!-- ======================= CTA ======================= -->
+<section class="cta-band" id="contact">
+  <div class="inner">
+    <div class="eyebrow" data-reveal>Start a Project</div>
+    <h2 data-reveal data-reveal-delay="80">Have drawings that need to become buildings?</h2>
+    <p data-reveal data-reveal-delay="150">Send us your project. We'll respond within one working day with scope, timeline, and a clear fee proposal.</p>
+    <a class="btn btn-light" data-reveal data-reveal-delay="220" href="mailto:info@example.com?subject=Project%20Enquiry%20%E2%80%93%20Nature%20Landscape%20Architects">Contact Us</a>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="inner">
+    <div class="brandcol">
+      <img src="assets/logo.png" alt="Nature Landscape Architects">
+      <p>BIM and landscape design studio. Designed by Nature. Sustained by Us.</p>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">BIM Modelling</a></li>
+        <li><a href="#services">Stage Documentation</a></li>
+        <li><a href="#services">Coordination &amp; Quantities</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:info@example.com">info@example.com</a></li>
+        <li><a href="tel:+971000000000">+971 00 000 0000</a></li>
+        <li><a href="#">Kerala · India</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="base">
+    <div>© <span id="yr"></span> Nature Landscape Architects. All rights reserved.</div>
+    <div>Designed by Nature · Sustained by Us</div>
+  </div>
+</footer>
+
+<script>
+// ---------- Intro ----------
+const intro = document.getElementById('intro');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function endIntro(){ intro.classList.add('done'); document.body.style.overflow=''; }
+if (reduce) { endIntro(); }
+else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
+
+// ---------- Reveal on scroll ----------
+(function(){
+  const els = Array.from(document.querySelectorAll('[data-reveal]'));
+  const io = new IntersectionObserver((entries)=>{
+    for (const e of entries){
+      if (e.isIntersecting){
+        const el = e.target;
+        const delay = parseInt(el.getAttribute('data-reveal-delay')||'0',10);
+        setTimeout(()=>{ el.style.opacity='1'; el.style.transform='translateY(0)'; }, delay);
+        io.unobserve(el);
+      }
+    }
+  },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  for (const el of els){
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight*.92 || reduce) continue;
+    el.style.opacity='0';
+    el.style.transform='translateY(26px)';
+    el.style.transition='opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1)';
+    el.style.willChange='opacity, transform';
+    io.observe(el);
+  }
+})();
+
+// ---------- Parallax + logo reveal ----------
+(function(){
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const pEls = Array.from(document.querySelectorAll('[data-parallax]'));
+  let ticking=false;
+  function update(){
+    ticking=false;
+    const vh=window.innerHeight;
+    for (const el of pEls){
+      const speed=parseFloat(el.getAttribute('data-parallax')||'0.2');
+      const rect=(el.closest('[data-parallax-scope]')||el).getBoundingClientRect();
+      if (rect.bottom<-200||rect.top>vh+200) continue;
+      const progress=(rect.top+rect.height/2-vh/2);
+      el.style.transform='translate3d(0,'+(-progress*speed).toFixed(1)+'px,0)';
+    }
+    const sec=document.getElementById('nla-logoreveal');
+    if (sec){
+      const r=sec.getBoundingClientRect();
+      const p=clamp((vh*.88-r.top)/(vh*.6),0,1);
+      const fill=sec.querySelector('[data-logo-fill]');
+      if (fill) fill.style.opacity=p.toFixed(3);
+      sec.querySelectorAll('[data-logo-line]').forEach((el)=>{
+        const axis=el.getAttribute('data-logo-line');
+        el.style.transform=(axis==='v'?'scaleY(':'scaleX(')+p.toFixed(3)+')';
+      });
+      const cap=sec.querySelector('[data-logo-caption]');
+      if (cap) cap.style.opacity=p.toFixed(3);
+    }
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  if (!reduce){
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    update();
+  } else {
+    const sec=document.getElementById('nla-logoreveal');
+    if (sec){
+      sec.querySelector('[data-logo-fill]').style.opacity='1';
+      sec.querySelector('[data-logo-caption]').style.opacity='1';
+      sec.querySelectorAll('[data-logo-line]').forEach(el=>el.style.transform='none');
+    }
+  }
+})();
+
+// ---------- Video: pause when off-screen + sound toggle ----------
+(function(){
+  const v=document.getElementById('reelVideo');
+  const btn=document.getElementById('muteBtn');
+  if (!v) return;
+  new IntersectionObserver((es)=>{
+    es.forEach(e=>{ e.isIntersecting ? v.play().catch(()=>{}) : v.pause(); });
+  },{threshold:.2}).observe(v);
+  btn.addEventListener('click',()=>{
+    v.muted=!v.muted;
+    btn.innerHTML=v.muted?'&#128263;':'&#128266;';
+    btn.setAttribute('aria-label', v.muted?'Unmute video':'Mute video');
+  });
+})();
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
