@@ -128,10 +128,14 @@ nav .cta:hover{background:#33383D;color:#fff}
 .logoreveal .h{flex:1;height:1px;background:rgba(17,20,23,.35);transform:scaleX(0)}
 .logoreveal .h.l{transform-origin:right center}
 .logoreveal .h.r{transform-origin:left center}
-.logoreveal .word{display:grid}
-.logoreveal .word>div{grid-area:1/1;font-family:var(--sans);font-weight:700;font-size:clamp(48px,8.6vw,140px);line-height:1;letter-spacing:.22em;margin-right:-.22em;white-space:nowrap}
-.logoreveal .outline{color:rgba(17,20,23,.1);-webkit-text-stroke:1px rgba(17,20,23,.45)}
-.logoreveal .fill{color:var(--ink);opacity:0}
+.logoreveal .word{display:flex;white-space:nowrap}
+.ltr{position:relative;display:inline-block;font-family:var(--sans);font-weight:700;font-size:clamp(48px,8.6vw,140px);line-height:1;letter-spacing:.22em;cursor:default;will-change:transform}
+.ltr .o,.ltr .f{display:block;transition:transform .45s var(--ease),opacity .45s var(--ease)}
+.ltr .o{color:rgba(17,20,23,.08);-webkit-text-stroke:1px rgba(17,20,23,.5)}
+.ltr .f{position:absolute;inset:0;color:var(--ink);opacity:0}
+.ltr:hover .o{transform:translate(-8px,-10px) rotate(-4deg)}
+.ltr:hover .f{transform:translate(8px,10px) rotate(4deg);opacity:1!important}
+.logoreveal .hint-hover{margin-top:26px;font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(17,20,23,.3)}
 .logoreveal .cap{font-size:clamp(12px,1.4vw,16px);letter-spacing:.58em;text-transform:lowercase;color:var(--ink-60);opacity:0;margin-bottom:18px}
 
 /* ---------- Services ---------- */
@@ -188,6 +192,25 @@ footer a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;transit
 footer a:hover{color:#fff}
 footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:rgba(255,255,255,.4)}
 
+/* ---------- Project status + modal ---------- */
+.status{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border-radius:999px;margin-top:8px}
+.status.done{background:rgba(23,89,52,.09);color:#1E6B40}
+.status.ongoing{background:rgba(17,20,23,.07);color:var(--ink-60)}
+.status.soon{background:rgba(17,20,23,.05);color:#85898D}
+.modal{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:24px}
+.modal[hidden]{display:none}
+.modal .overlay{position:absolute;inset:0;background:rgba(12,15,17,.66);backdrop-filter:blur(4px)}
+.modal .panel{position:relative;background:#fff;max-width:860px;width:100%;max-height:86vh;overflow:auto;padding:clamp(32px,5vw,60px);box-shadow:0 40px 90px rgba(0,0,0,.35)}
+.modal .close{position:absolute;top:16px;right:16px;width:40px;height:40px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:18px;cursor:pointer;transition:background .25s}
+.modal .close:hover{background:var(--paper-alt)}
+.modal h3{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.14;margin-top:8px}
+.modal .meta{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-mute)}
+.modal p{margin-top:16px;font-size:15px;line-height:1.75;color:var(--ink-60);text-wrap:pretty}
+.modal h4{margin-top:26px;font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--ink)}
+.modal ul{margin:12px 0 0 18px;display:flex;flex-direction:column;gap:7px;font-size:14.5px;line-height:1.6;color:var(--ink-60)}
+.modal .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 clamp(20px,4vw,48px)}
+body.modal-open{overflow:hidden}
+
 /* reveal-on-scroll initial state applied by JS */
 </style>
 </head>
@@ -214,7 +237,7 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
     </div>
-    <a class="cta" href="#contact">Contact Us</a>
+    <a class="cta" href="contact.html">Contact Us</a>
   </div>
 </nav>
 
@@ -239,7 +262,7 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
     <h1>Designed by Nature. Sustained by Us.</h1>
     <p>BIM and landscape design for projects that endure, from the first concept line to the final as-built record. Accurate, coordinated, construction-ready.</p>
     <div class="actions">
-      <a class="btn btn-dark" href="#contact">Contact Us</a>
+      <a class="btn btn-dark" href="contact.html">Contact Us</a>
       <a class="btn btn-ghost" href="#projects">View Our Work</a>
     </div>
   </div>
@@ -274,7 +297,7 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
     <div class="copy" data-reveal data-reveal-delay="120">
       <p>We are a specialist documentation studio serving landscape architects, developers, and multi-disciplinary teams. Our BIM professionals translate design intent into technically accurate, construction-ready documentation, with the quality standards and turnaround times demanding projects require.</p>
       <p>From residential gardens to large-scale public masterplans, we reduce project risk, improve coordination, and streamline construction, at highly competitive prices.</p>
-      <a class="link-under" href="#contact">About the Studio →</a>
+      <a class="link-under" href="contact.html">About the Studio →</a>
     </div>
   </div>
 </section>
@@ -285,14 +308,14 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
     <div class="v top" data-logo-line="v"></div>
     <div class="row">
       <div class="h l" data-logo-line="h"></div>
-      <div class="word">
-        <div class="outline">NATURE</div>
-        <div class="fill" data-logo-fill>NATURE</div>
+      <div class="word" id="natureWord" aria-label="NATURE" title="">
+        <span class="ltr"><span class="o">N</span><span class="f">N</span></span><span class="ltr"><span class="o">A</span><span class="f">A</span></span><span class="ltr"><span class="o">T</span><span class="f">T</span></span><span class="ltr"><span class="o">U</span><span class="f">U</span></span><span class="ltr"><span class="o">R</span><span class="f">R</span></span><span class="ltr"><span class="o">E</span><span class="f">E</span></span>
       </div>
       <div class="h r" data-logo-line="h"></div>
     </div>
     <div class="cap" data-logo-caption>landscape architecture</div>
     <div class="v bot" data-logo-line="v"></div>
+    <div class="hint-hover" data-logo-caption>hover the letters</div>
   </div>
 </section>
 
@@ -302,29 +325,34 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
     <div class="head" data-reveal>
       <div>
         <div class="eyebrow" style="margin-bottom:20px">What We Do</div>
-        <h2 class="h-serif">Four disciplines, one standard.</h2>
+        <h2 class="h-serif">Five disciplines, one standard.</h2>
       </div>
-      <a class="link-under" href="#contact">All Services →</a>
+      <a class="link-under" href="contact.html">All Services →</a>
     </div>
     <div class="svc-list">
-      <a class="svc" href="#contact" data-reveal>
+      <a class="svc" href="contact.html" data-reveal>
         <div class="idx">01</div>
         <div><h3>BIM Modelling</h3><p>Landscape BIM models from LOD 100 to 400, softscape, hardscape, and site elements built to your BIM execution plan.</p></div>
         <div class="arr">→</div>
       </a>
-      <a class="svc" href="#contact" data-reveal data-reveal-delay="60">
+      <a class="svc" href="contact.html" data-reveal data-reveal-delay="60">
         <div class="idx">02</div>
         <div><h3>Stage Documentation</h3><p>Concept, design development, construction documentation, shop drawings, and as-built records, every stage covered.</p></div>
         <div class="arr">→</div>
       </a>
-      <a class="svc" href="#contact" data-reveal data-reveal-delay="120">
+      <a class="svc" href="contact.html" data-reveal data-reveal-delay="120">
         <div class="idx">03</div>
         <div><h3>Landscape Specialisms</h3><p>Masterplans, public parks, podium landscapes, planting and hardscape packages, documented by people who know landscape.</p></div>
         <div class="arr">→</div>
       </a>
-      <a class="svc" href="#contact" data-reveal data-reveal-delay="180">
+      <a class="svc" href="contact.html" data-reveal data-reveal-delay="180">
         <div class="idx">04</div>
         <div><h3>Coordination &amp; Quantities</h3><p>Clash detection, multi-disciplinary BIM coordination, quantity take-offs, scheduling, and precise 2D CAD drawings.</p></div>
+        <div class="arr">→</div>
+      </a>
+      <a class="svc" href="contact.html" data-reveal data-reveal-delay="240">
+        <div class="idx">05</div>
+        <div><h3>BIM Staffing</h3><p>Qualified Revit and landscape BIM specialists embedded in your team, on demand or long term, working to your standards, templates, and time zone.</p></div>
         <div class="arr">→</div>
       </a>
     </div>
@@ -339,28 +367,31 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
         <div class="eyebrow" style="margin-bottom:20px">Selected Work</div>
         <h2 class="h-serif">Documentation in the field.</h2>
       </div>
-      <a class="link-under" href="#contact">All Projects →</a>
+      <a class="link-under" href="contact.html">All Projects →</a>
     </div>
     <div class="proj-grid">
-      <a class="proj" href="#contact" data-reveal>
-        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-render.jpg" alt="Coastal Promenade render" loading="lazy"></div></div>
+      <a class="proj" href="#" data-modal="modal-mip" data-reveal>
+        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-midisland.jpg" alt="Mid Island Parkway interchange aerial" loading="lazy"></div></div>
         <div>
-          <div class="meta"><h3>Coastal Promenade</h3><span class="sector">Public Realm</span></div>
-          <div class="scope">2.4 km waterfront masterplan · LOD 300 · Construction documentation</div>
+          <div class="meta"><h3>Mid Island Parkway</h3><span class="sector">Infrastructure</span></div>
+          <div class="scope">Phase 2 · Abu Dhabi · 25 km transit corridor · Interchanges, service roads &amp; corridor landscape</div>
+          <span class="status done">Delivered · View details →</span>
         </div>
       </a>
-      <a class="proj" href="#contact" data-reveal data-reveal-delay="100">
-        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-render.jpg" alt="The Verdant Podium render" loading="lazy" style="filter:saturate(.85) brightness(1.04)"></div></div>
+      <a class="proj" href="contact.html" data-reveal data-reveal-delay="100">
+        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-dch.jpg" alt="Dubai Creek Harbour residential tower render" loading="lazy"></div></div>
         <div>
-          <div class="meta"><h3>The Verdant Podium</h3><span class="sector">Residential</span></div>
-          <div class="scope">Podium landscape · LOD 350 · Clash coordination with structure &amp; MEP</div>
+          <div class="meta"><h3>DCH Plots · Emaar</h3><span class="sector">Residential</span></div>
+          <div class="scope">Dubai Creek Harbour · Plots F02, F09 &amp; F12 · Landscape BIM &amp; DD documentation</div>
+          <span class="status ongoing">Ongoing</span>
         </div>
       </a>
-      <a class="proj" href="#contact" data-reveal data-reveal-delay="200">
-        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-render.jpg" alt="Heritage Botanic Park render" loading="lazy" style="filter:sepia(.12) saturate(1.05)"></div></div>
+      <a class="proj" href="contact.html" data-reveal data-reveal-delay="200">
+        <div class="media" data-parallax-scope><div class="par" data-parallax="0.05"><img src="assets/project-park.jpg" alt="Community park masterplan aerial" loading="lazy"></div></div>
         <div>
-          <div class="meta"><h3>Heritage Botanic Park</h3><span class="sector">Public Park</span></div>
-          <div class="scope">40 ha park · Planting &amp; hardscape documentation · Quantity take-offs</div>
+          <div class="meta"><h3>Community Park</h3><span class="sector">Public Park</span></div>
+          <div class="scope">Masterplan · Planting, water play &amp; sports courts · Case study in preparation</div>
+          <span class="status soon">Coming soon</span>
         </div>
       </a>
     </div>
@@ -382,9 +413,46 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
     <div class="eyebrow" data-reveal>Start a Project</div>
     <h2 data-reveal data-reveal-delay="80">Have drawings that need to become buildings?</h2>
     <p data-reveal data-reveal-delay="150">Send us your project. We'll respond within one working day with scope, timeline, and a clear fee proposal.</p>
-    <a class="btn btn-light" data-reveal data-reveal-delay="220" href="mailto:info@example.com?subject=Project%20Enquiry%20%E2%80%93%20Nature%20Landscape%20Architects">Contact Us</a>
+    <a class="btn btn-light" data-reveal data-reveal-delay="220" href="contact.html">Contact Us</a>
   </div>
 </section>
+
+<!-- ======================= PROJECT MODAL ======================= -->
+<div class="modal" id="modal-mip" hidden role="dialog" aria-modal="true" aria-labelledby="mip-title">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Infrastructure · Abu Dhabi · Phase 2</div>
+    <h3 id="mip-title">Mid Island Parkway</h3>
+    <p>The Mid Island Parkway is a 25 km corridor, delivered in two phases, that traverses several islands and comprises dual carriageways, major interchanges, and service roads, organised into zones by geographical location.</p>
+    <p>Functionally, the Parkway establishes a corridor accommodating a high-quality transit route linking the central business districts of Abu Dhabi Island, while providing access to other major travel generators along it.</p>
+    <div class="cols">
+      <div>
+        <h4>Key Design Objectives</h4>
+        <ul>
+          <li>Minimise environmental impacts</li>
+          <li>Achieve high sustainability levels</li>
+          <li>Consider freight and public transport requirements</li>
+          <li>Consider existing and future developments</li>
+          <li>Consider ongoing infrastructure projects</li>
+          <li>Achieve a high level of road safety</li>
+          <li>Optimise the delivery timeline</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Landscape Design Focus</h4>
+        <ul>
+          <li>Establish a legible cyclist &amp; pedestrian connection</li>
+          <li>Create interesting scenery for all road users — pedestrian, cyclist &amp; vehicular</li>
+          <li>Contemplate how the landscape is viewed at different speeds</li>
+          <li>Address noise attenuation and visual barriers where required</li>
+          <li>Blend in with the surrounding natural landscape</li>
+          <li>Provide opportunities for people to connect with nature</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ======================= FOOTER ======================= -->
 <footer>
@@ -412,9 +480,9 @@ footer .base{max-width:1300px;margin:0 auto;padding:22px 24px;border-top:1px sol
     <div>
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:info@example.com">info@example.com</a></li>
-        <li><a href="tel:+971000000000">+971 00 000 0000</a></li>
-        <li><a href="#">Kerala · India</a></li>
+        <li><a href="mailto:adithya@naturelandscapearchitects.com">adithya@naturelandscapearchitects.com</a></li>
+        <li><a href="contact.html">Contact form</a></li>
+        <li><a href="contact.html">Kerala · India — Head Office</a></li>
       </ul>
     </div>
   </div>
@@ -475,14 +543,24 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
     if (sec){
       const r=sec.getBoundingClientRect();
       const p=clamp((vh*.88-r.top)/(vh*.6),0,1);
-      const fill=sec.querySelector('[data-logo-fill]');
-      if (fill) fill.style.opacity=p.toFixed(3);
+      // letters fly in from spread positions and join at the centre
+      const word=document.getElementById('natureWord');
+      if (word){
+        const ltrs=word.querySelectorAll('.ltr');
+        const base=word.offsetWidth/Math.max(ltrs.length,1);
+        const ease=1-Math.pow(1-p,3);
+        ltrs.forEach((el,i)=>{
+          const off=(i-(ltrs.length-1)/2)*base*1.5*(1-ease);
+          const rot=(i-(ltrs.length-1)/2)*8*(1-ease);
+          el.style.transform='translate3d('+off.toFixed(1)+'px,0,0) rotate('+rot.toFixed(2)+'deg)';
+          el.querySelector('.f').style.opacity=ease.toFixed(3);
+        });
+      }
       sec.querySelectorAll('[data-logo-line]').forEach((el)=>{
         const axis=el.getAttribute('data-logo-line');
         el.style.transform=(axis==='v'?'scaleY(':'scaleX(')+p.toFixed(3)+')';
       });
-      const cap=sec.querySelector('[data-logo-caption]');
-      if (cap) cap.style.opacity=p.toFixed(3);
+      sec.querySelectorAll('[data-logo-caption]').forEach((cap)=>cap.style.opacity=p.toFixed(3));
     }
   }
   function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
@@ -493,8 +571,8 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
   } else {
     const sec=document.getElementById('nla-logoreveal');
     if (sec){
-      sec.querySelector('[data-logo-fill]').style.opacity='1';
-      sec.querySelector('[data-logo-caption]').style.opacity='1';
+      sec.querySelectorAll('.ltr .f').forEach(el=>el.style.opacity='1');
+      sec.querySelectorAll('[data-logo-caption]').forEach(el=>el.style.opacity='1');
       sec.querySelectorAll('[data-logo-line]').forEach(el=>el.style.transform='none');
     }
   }
@@ -513,6 +591,24 @@ else { document.body.style.overflow='hidden'; setTimeout(endIntro, 3900); }
     btn.innerHTML=v.muted?'&#128263;':'&#128266;';
     btn.setAttribute('aria-label', v.muted?'Unmute video':'Mute video');
   });
+})();
+
+// ---------- Project modal ----------
+(function(){
+  function open(id){
+    const m=document.getElementById(id);
+    if(!m) return;
+    m.hidden=false; document.body.classList.add('modal-open');
+  }
+  function closeAll(){
+    document.querySelectorAll('.modal').forEach(m=>m.hidden=true);
+    document.body.classList.remove('modal-open');
+  }
+  document.querySelectorAll('[data-modal]').forEach(el=>{
+    el.addEventListener('click',(e)=>{ e.preventDefault(); open(el.getAttribute('data-modal')); });
+  });
+  document.querySelectorAll('[data-modal-close]').forEach(el=>el.addEventListener('click',closeAll));
+  window.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeAll(); });
 })();
 
 document.getElementById('yr').textContent=new Date().getFullYear();
