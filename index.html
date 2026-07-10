@@ -49,7 +49,10 @@ img,video{display:block;max-width:100%}
 
 /* ---------- Keyframes ---------- */
 @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes introLogo{0%{opacity:0;transform:scale(.9) translateY(16px)}55%{opacity:1}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes introLogo{0%{opacity:0;transform:scale(.92) translateY(18px)}55%{opacity:1}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes introSweep{from{-webkit-mask-position:110% 0;mask-position:110% 0}to{-webkit-mask-position:0% 0;mask-position:0% 0}}
+@keyframes introGlow{0%,100%{opacity:0}45%{opacity:.55}}
+@keyframes introSettle{from{transform:scale(1.012)}to{transform:scale(1)}}
 @keyframes introLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes introFade{from{opacity:0}to{opacity:1}}
 @keyframes introExit{from{transform:translateY(0)}to{transform:translateY(-101%)}}
@@ -60,13 +63,29 @@ img,video{display:block;max-width:100%}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
 
 /* ---------- Intro ---------- */
-#intro{position:fixed;inset:0;z-index:1000;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;animation:introExit .9s cubic-bezier(.76,0,.24,1) 2.9s forwards}
+#intro{position:fixed;inset:0;z-index:1000;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;animation:introExit .9s cubic-bezier(.76,0,.24,1) 3.4s forwards}
 #intro.done{display:none}
 #intro .row{display:flex;align-items:center;width:min(1100px,92vw);gap:clamp(24px,4vw,56px)}
 #intro .line{flex:1;height:1px;background:rgba(17,20,23,.3);animation:introLine 1.3s var(--ease) .55s both}
 #intro .line.l{transform-origin:right center}
 #intro .line.r{transform-origin:left center}
-#intro img{width:clamp(240px,34vw,440px);height:auto;animation:introLogo 1.4s var(--ease) .1s both}
+#intro .logo-stack{position:relative;width:clamp(240px,34vw,440px);animation:introLogo 1.3s var(--ease) .1s both}
+#intro .logo-stack img{display:block;width:100%;height:auto}
+#intro .logo-stack .mono{filter:brightness(0);opacity:.92}
+#intro .logo-stack .color{position:absolute;inset:0;
+  -webkit-mask-image:linear-gradient(105deg,#000 42%,rgba(0,0,0,.35) 50%,transparent 58%);
+  mask-image:linear-gradient(105deg,#000 42%,rgba(0,0,0,.35) 50%,transparent 58%);
+  -webkit-mask-size:280% 100%;mask-size:280% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  animation:introSweep 1.5s cubic-bezier(.55,0,.18,1) 1.15s both,introSettle .7s var(--ease) 2.5s both}
+#intro .logo-stack .sheen{position:absolute;inset:-14%;pointer-events:none;
+  background:radial-gradient(48% 60% at 50% 46%,rgba(46,109,168,.28),transparent 70%);
+  filter:blur(14px);animation:introGlow 1.7s ease 1.2s both}
+@media (prefers-reduced-motion: reduce){
+  #intro .logo-stack .mono{display:none}
+  #intro .logo-stack .color{-webkit-mask-image:none;mask-image:none;animation:none}
+  #intro .logo-stack .sheen{display:none}
+}
 #intro .tag{margin-top:34px;font-size:11px;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);animation:introFade 1s ease 1.4s both}
 #intro .hint{position:absolute;bottom:30px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(17,20,23,.35);animation:introFade 1s ease 2s both}
 
@@ -172,6 +191,12 @@ nav .cta:hover{background:#33383D;color:#fff}
 .proj .scope{font-size:13.5px;line-height:1.55;color:var(--ink-45)}
 
 /* ---------- Quote ---------- */
+/* ---------- Vision ---------- */
+.vision{background:#fff;border-top:1px solid var(--line-soft)}
+.vision .inner{max-width:980px;margin:0 auto;padding:clamp(90px,12vw,160px) 24px;text-align:center}
+.vision h2{margin-top:24px;font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.2vw,46px);line-height:1.32;letter-spacing:-.005em;text-wrap:balance}
+.vision p{margin:26px auto 0;font-size:15.5px;line-height:1.78;color:var(--ink-60);max-width:62ch;text-wrap:pretty}
+
 /* ---------- Clients banner ---------- */
 .clients{background:#fff;border-top:1px solid var(--line-soft);overflow:hidden;padding:clamp(64px,9vw,120px) 0}
 .clients .eyebrow{text-align:center}
@@ -264,8 +289,13 @@ h2.split.on .w i{transform:none}
 .team .inner{max-width:1300px;margin:0 auto;padding:clamp(80px,11vw,150px) 24px}
 .team .head{max-width:760px;margin-bottom:clamp(40px,6vw,72px)}
 .team .head h2{margin-top:20px;font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,56px);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+.team .head p{margin-top:20px;font-size:15px;line-height:1.75;color:var(--ink-60);max-width:60ch;text-wrap:pretty}
+.member .mail{margin-top:12px;font-size:12px;color:var(--ink-45);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s;word-break:break-all;display:inline-block}
+.member .mail:hover{border-color:var(--ink-45)}
+.member .more{margin-top:10px;font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute)}
 .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:clamp(20px,3vw,36px)}
-.member{position:relative;border:1px solid var(--line-soft);background:#fff;padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:18px;text-decoration:none;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.member{position:relative;color:inherit;text-decoration:none;cursor:default;border:1px solid var(--line-soft);background:#fff;padding:clamp(24px,3vw,34px);display:flex;flex-direction:column;gap:18px;text-decoration:none;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.member[data-modal]{cursor:pointer}
 .member:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(17,20,23,.1);border-color:transparent}
 .member .avatar{width:76px;height:76px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#E9EFF3,#F6F8FA);border:1px solid var(--line-soft);font-family:var(--serif);font-weight:500;font-size:26px;color:var(--ink-60);transition:background .5s var(--ease),color .5s,transform .5s var(--ease)}
 .member:hover .avatar{background:var(--ink);color:#fff;transform:scale(1.05)}
@@ -321,7 +351,11 @@ body.modal-open{overflow:hidden}
 <div id="intro" onclick="endIntro()">
   <div class="row">
     <div class="line l"></div>
-    <img src="assets/logo.png" alt="Nature Landscape Architects">
+    <div class="logo-stack">
+      <img class="mono" src="assets/logo.png" alt="" aria-hidden="true">
+      <img class="color" src="assets/logo.png" alt="Nature Landscape Architects">
+      <div class="sheen" aria-hidden="true"></div>
+    </div>
     <div class="line r"></div>
   </div>
   <div class="tag">Designed by Nature · Sustained by Us</div>
@@ -410,6 +444,15 @@ body.modal-open{overflow:hidden}
       <p>From residential gardens to large-scale public masterplans, we reduce project risk, improve coordination, and streamline construction, at highly competitive prices.</p>
       <a class="link-under" href="contact.html">About the Studio →</a>
     </div>
+  </div>
+</section>
+
+<!-- ======================= VISION ======================= -->
+<section class="vision" id="vision" data-screen-label="Vision">
+  <div class="inner">
+    <div class="eyebrow" data-reveal>Our Vision</div>
+    <h2 data-reveal data-reveal-delay="80">A future where every landscape is designed, documented, and delivered through intelligent models.</h2>
+    <p data-reveal data-reveal-delay="160">Outdoor environments deserve the same digital rigour as buildings. Our vision is to set the benchmark for landscape BIM: every tree, path, and water line modelled with intent, coordinated without friction, and handed over as living data that serves the project long after construction ends.</p>
   </div>
 </section>
 
@@ -552,22 +595,36 @@ body.modal-open{overflow:hidden}
   <div class="inner">
     <div class="head">
       <div class="eyebrow" data-reveal>The Team</div>
-      <h2 data-reveal data-reveal-delay="80">The people behind the drawings.</h2>
+      <h2 data-reveal data-reveal-delay="80">The minds shaping exceptional landscapes.</h2>
+      <p data-reveal data-reveal-delay="150">A studio of 20+ professionals: architects, senior architects, BIM specialists, 3D modellers, CAD drafters, landscape designers, and technical experts working together to deliver high-quality landscape architecture projects.</p>
     </div>
     <div class="team-grid">
-      <div class="member" data-reveal>
+      <div class="member" role="button" tabindex="0" data-modal="modal-team-pk" data-reveal>
         <div class="avatar">P</div>
         <div>
-          <h3>Prasannakumar</h3>
+          <h3>Prasanna Kumar</h3>
           <div class="role">Managing Director</div>
+          <a class="mail" href="mailto:Prasanna.kumar@naturelandscapearchitects.com" onclick="event.stopPropagation()">Prasanna.kumar@naturelandscapearchitects.com</a>
+          <div class="more">View profile →</div>
         </div>
         <div class="bar"></div>
       </div>
-      <div class="member" data-reveal data-reveal-delay="100">
+      <div class="member" role="button" tabindex="0" data-modal="modal-team-sanil" data-reveal data-reveal-delay="100">
         <div class="avatar">S</div>
         <div>
           <h3>Sanil</h3>
           <div class="role">Head of BIM &amp; Landscape Design</div>
+          <a class="mail" href="mailto:sanil@naturelandscapearchitects.com" onclick="event.stopPropagation()">sanil@naturelandscapearchitects.com</a>
+          <div class="more">View profile →</div>
+        </div>
+        <div class="bar"></div>
+      </div>
+      <div class="member" data-reveal data-reveal-delay="150">
+        <div class="avatar">A</div>
+        <div>
+          <h3>Adithya</h3>
+          <div class="role">Marketing Head</div>
+          <a class="mail" href="mailto:adithya@naturelandscapearchitects.com">adithya@naturelandscapearchitects.com</a>
         </div>
         <div class="bar"></div>
       </div>
@@ -582,7 +639,7 @@ body.modal-open{overflow:hidden}
         <div class="bar"></div>
       </div>
       -->
-      <a class="member join" href="contact.html" data-reveal data-reveal-delay="200">
+      <a class="member join" href="contact.html" data-reveal data-reveal-delay="220">
         <div>
           <h3>Join the studio</h3>
           <p>We're growing our BIM and landscape team. Introduce yourself.</p>
@@ -647,6 +704,65 @@ body.modal-open{overflow:hidden}
         </ul>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ======================= TEAM MODALS ======================= -->
+<div class="modal" id="modal-team-pk" hidden role="dialog" aria-modal="true">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Managing Director</div>
+    <h3>Prasanna Kumar</h3>
+    <p>With over 25 years of professional experience, Prasanna Kumar leads the studio across architecture, structural engineering, interior design, and landscape architecture. He has an extensive record of leading large-scale projects and multidisciplinary collaborations, delivering innovative design solutions across diverse sectors.</p>
+    <div class="cols">
+      <div>
+        <h4>Background</h4>
+        <ul>
+          <li>25+ years of professional experience</li>
+          <li>Bachelor of Technology in Civil Engineering</li>
+          <li>Architecture, structural engineering, interior design &amp; landscape architecture</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Leadership</h4>
+        <ul>
+          <li>Large-scale project leadership &amp; multidisciplinary collaboration</li>
+          <li>Innovative design solutions across diverse sectors</li>
+          <li>Project planning, execution &amp; client coordination</li>
+        </ul>
+      </div>
+    </div>
+    <p><a class="mail" href="mailto:Prasanna.kumar@naturelandscapearchitects.com">Prasanna.kumar@naturelandscapearchitects.com</a></p>
+  </div>
+</div>
+
+<div class="modal" id="modal-team-sanil" hidden role="dialog" aria-modal="true">
+  <div class="overlay" data-modal-close></div>
+  <div class="panel">
+    <button class="close" data-modal-close aria-label="Close">✕</button>
+    <div class="meta">Head of BIM &amp; Landscape Design</div>
+    <h3>Sanil</h3>
+    <p>Sanil brings 10+ years of professional experience specialised in Building Information Modelling and advanced digital construction workflows, leading the studio's BIM production and landscape documentation.</p>
+    <div class="cols">
+      <div>
+        <h4>Background</h4>
+        <ul>
+          <li>Bachelor of Technology in Civil Engineering</li>
+          <li>10+ years of professional experience</li>
+          <li>BIM &amp; advanced digital construction workflows</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Expertise</h4>
+        <ul>
+          <li>BIM coordination, clash detection &amp; Revit</li>
+          <li>Project documentation, visualization &amp; digital collaboration</li>
+          <li>Workflow optimization, construction methodologies, modelling standards &amp; efficient project delivery</li>
+        </ul>
+      </div>
+    </div>
+    <p><a class="mail" href="mailto:sanil@naturelandscapearchitects.com">sanil@naturelandscapearchitects.com</a></p>
   </div>
 </div>
 
