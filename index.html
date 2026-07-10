@@ -50,9 +50,13 @@ img,video{display:block;max-width:100%}
 /* ---------- Keyframes ---------- */
 @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes introLogo{0%{opacity:0;transform:scale(.92) translateY(18px)}55%{opacity:1}100%{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes introSweep{from{-webkit-mask-position:110% 0;mask-position:110% 0}to{-webkit-mask-position:0% 0;mask-position:0% 0}}
-@keyframes introGlow{0%,100%{opacity:0}45%{opacity:.55}}
-@keyframes introSettle{from{transform:scale(1.012)}to{transform:scale(1)}}
+@keyframes introAperture{
+  0%{clip-path:inset(0 49.4% 0 49.4% round 28px);filter:blur(24px) saturate(1.25);opacity:0;transform:scale(1.14)}
+  22%{opacity:1}
+  100%{clip-path:inset(0 0 0 0 round 28px);filter:blur(0) saturate(1);opacity:1;transform:scale(1)}
+}
+@keyframes introGlint{from{left:-45%}to{left:135%}}
+@keyframes introTag{from{opacity:0;letter-spacing:.85em}to{opacity:1;letter-spacing:.42em}}
 @keyframes introLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes introFade{from{opacity:0}to{opacity:1}}
 @keyframes introExit{from{transform:translateY(0)}to{transform:translateY(-101%)}}
@@ -63,30 +67,24 @@ img,video{display:block;max-width:100%}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
 
 /* ---------- Intro ---------- */
-#intro{position:fixed;inset:0;z-index:1000;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;animation:introExit .9s cubic-bezier(.76,0,.24,1) 3.4s forwards}
+#intro{position:fixed;inset:0;z-index:1000;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;animation:introExit .9s cubic-bezier(.76,0,.24,1) 3.6s forwards}
 #intro.done{display:none}
 #intro .row{display:flex;align-items:center;width:min(1100px,92vw);gap:clamp(24px,4vw,56px)}
 #intro .line{flex:1;height:1px;background:rgba(17,20,23,.3);animation:introLine 1.3s var(--ease) .55s both}
 #intro .line.l{transform-origin:right center}
 #intro .line.r{transform-origin:left center}
-#intro .logo-stack{position:relative;width:clamp(250px,36vw,470px);animation:introLogo 1.3s var(--ease) .1s both;filter:drop-shadow(0 26px 60px rgba(0,43,93,.28))}
-#intro .logo-stack img{display:block;width:100%;height:auto}
-#intro .logo-stack .mono{filter:grayscale(1) brightness(.62) contrast(1.35);opacity:.96}
-#intro .logo-stack .color{position:absolute;inset:0;
-  -webkit-mask-image:linear-gradient(105deg,#000 42%,rgba(0,0,0,.35) 50%,transparent 58%);
-  mask-image:linear-gradient(105deg,#000 42%,rgba(0,0,0,.35) 50%,transparent 58%);
-  -webkit-mask-size:280% 100%;mask-size:280% 100%;
-  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-  animation:introSweep 1.5s cubic-bezier(.55,0,.18,1) 1.15s both,introSettle .7s var(--ease) 2.5s both}
-#intro .logo-stack .sheen{position:absolute;inset:-14%;pointer-events:none;
-  background:radial-gradient(52% 64% at 50% 48%,rgba(0,43,93,.32),transparent 72%);
-  filter:blur(14px);animation:introGlow 1.7s ease 1.2s both}
+#intro .logo-reveal{position:relative;width:clamp(250px,36vw,470px);filter:drop-shadow(0 30px 64px rgba(0,43,93,.26))}
+#intro .logo-reveal img{display:block;width:100%;height:auto;
+  animation:introAperture 1.7s cubic-bezier(.7,0,.16,1) .5s both}
+#intro .logo-reveal .glint{position:absolute;inset:0;border-radius:28px;overflow:hidden;pointer-events:none}
+#intro .logo-reveal .glint::after{content:'';position:absolute;top:-45%;bottom:-45%;width:30%;left:-45%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.5) 48%,rgba(255,255,255,.14) 55%,transparent);
+  transform:skewX(-16deg);animation:introGlint 1s cubic-bezier(.45,0,.2,1) 2.35s both}
 @media (prefers-reduced-motion: reduce){
-  #intro .logo-stack .mono{display:none}
-  #intro .logo-stack .color{-webkit-mask-image:none;mask-image:none;animation:none}
-  #intro .logo-stack .sheen{display:none}
+  #intro .logo-reveal img{animation:none;clip-path:none;filter:none}
+  #intro .logo-reveal .glint{display:none}
 }
-#intro .tag{margin-top:34px;font-size:11px;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);animation:introFade 1s ease 1.4s both}
+#intro .tag{margin-top:34px;font-size:11px;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-mute);animation:introTag 1.4s cubic-bezier(.3,0,.2,1) 1.7s both}
 #intro .hint{position:absolute;bottom:30px;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(17,20,23,.35);animation:introFade 1s ease 2s both}
 
 /* ---------- Nav ---------- */
@@ -351,10 +349,9 @@ body.modal-open{overflow:hidden}
 <div id="intro" onclick="endIntro()">
   <div class="row">
     <div class="line l"></div>
-    <div class="logo-stack">
-      <img class="mono" src="assets/logo.png" alt="" aria-hidden="true">
-      <img class="color" src="assets/logo.png" alt="Nature Landscape Architects">
-      <div class="sheen" aria-hidden="true"></div>
+    <div class="logo-reveal">
+      <img src="assets/logo-blue.png" alt="Nature Landscape Architects">
+      <div class="glint" aria-hidden="true"></div>
     </div>
     <div class="line r"></div>
   </div>
